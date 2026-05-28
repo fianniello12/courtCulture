@@ -11,6 +11,10 @@ public interface ProdottoDao {
 	public void doSave(ProdottoBean prodotto) throws SQLException;
 	
 	public boolean doUpdateImage(ProdottoBean prodotto) throws SQLException;
+	
+	public ProdottoBean doRetrieveByBrand(String brand) throws SQLException;
+	
+	public ProdottoBean doRetrieveByCategoria(String categoria) throws SQLException;
 
 	public boolean doDelete(int code) throws SQLException;
 
