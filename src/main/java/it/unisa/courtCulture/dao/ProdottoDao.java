@@ -1,7 +1,7 @@
 package it.unisa.courtCulture.dao;
 
 import java.sql.SQLException;
-import java.util.Collection;
+import java.util.List;
 
 import it.unisa.courtCulture.model.ProdottoBean;
 
@@ -22,5 +22,5 @@ public interface ProdottoDao {
 
 	public ProdottoBean doRetrieveByKey(int code) throws SQLException;
 	
-	public Collection<ProdottoBean> doRetrieveAll(String order) throws SQLException;
+	public List<ProdottoBean> doRetrieveAll(String order) throws SQLException;
 }
