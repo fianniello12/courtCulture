@@ -12,7 +12,7 @@ public interface ProdottoDao {
 	
 	public boolean doUpdateImage(ProdottoBean prodotto) throws SQLException;
 	
-	public boolean doUpdate(ProdottoBean product) throws SQLException ;
+	public boolean doUpdate(ProdottoBean product) throws SQLException;
 	
 	public ProdottoBean doRetrieveByBrand(String brand) throws SQLException;
 	

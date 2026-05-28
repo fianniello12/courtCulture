@@ -79,7 +79,7 @@ public class ProdottoDaoImpl {
                     bean.setPrezzo(rs.getFloat("prezzo"));
                     bean.setQuantitaDisponibile(rs.getInt("quantita_disponibile"));
                     bean.setCategoria(rs.getString("categoria"));
-                    bean.setBrand(rs.getNString("brand"));
+                    bean.setBrand(rs.getString("brand"));
                     bean.setPathImmagine(rs.getString("path_immagine"));
                     bean.setMimeType(rs.getString("mime_type"));
                     bean.setAttivo(rs.getBoolean("attivo"));
@@ -89,15 +89,17 @@ public class ProdottoDaoImpl {
         return bean;
     }
     
-    public synchronized ProdottoBean doRetrieveByBrand(String brand) throws SQLException {
-        ProdottoBean bean = new ProdottoBean();
+    public synchronized List<ProdottoBean> doRetrieveByBrand(String brand) throws SQLException {
+    	List<ProdottoBean> products = new LinkedList<>();
         String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE brand = ?";
         try (Connection connection = ds.getConnection();
         		PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
             preparedStatement.setString(1, brand);
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
-                    bean.setCodice(rs.getInt("codice"));
+                	ProdottoBean bean = new ProdottoBean();
+                	
+                	bean.setCodice(rs.getInt("codice"));
                     bean.setNome(rs.getString("nome"));
                     bean.setDescrizione(rs.getString("descrizione"));
                     bean.setPrezzo(rs.getFloat("prezzo"));
@@ -107,20 +109,24 @@ public class ProdottoDaoImpl {
                     bean.setPathImmagine(rs.getString("path_immagine"));
                     bean.setMimeType(rs.getString("mime_type"));
                     bean.setAttivo(rs.getBoolean("attivo"));
+                    
+                    products.add(bean);
                 }
             }
         }
-        return bean;
+        return products;
     }
 
-    public synchronized ProdottoBean doRetrieveByCategoria(String categoria) throws SQLException {
-        ProdottoBean bean = new ProdottoBean();
+    public synchronized List<ProdottoBean> doRetrieveByCategoria(String categoria) throws SQLException {
+    	List<ProdottoBean> products = new LinkedList<>();
         String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE categoria = ?";
         try (Connection connection = ds.getConnection();
         		PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
             preparedStatement.setString(1, categoria);
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
+                	ProdottoBean bean = new ProdottoBean();
+                	
                     bean.setCodice(rs.getInt("codice"));
                     bean.setNome(rs.getString("nome"));
                     bean.setDescrizione(rs.getString("descrizione"));
@@ -131,10 +137,13 @@ public class ProdottoDaoImpl {
                     bean.setPathImmagine(rs.getString("path_immagine"));
                     bean.setMimeType(rs.getString("mime_type"));
                     bean.setAttivo(rs.getBoolean("attivo"));
+                    
+                    products.add(bean);
+
                 }
             }
         }
-        return bean;
+        return products;
     }
 
     public synchronized boolean doDelete(int code) throws SQLException {
@@ -151,7 +160,9 @@ public class ProdottoDaoImpl {
         List<ProdottoBean> products = new LinkedList<>();
         String selectSQL = "SELECT * FROM " + TABLE_NAME;
         if (order != null && !order.isEmpty()) {
-            selectSQL += " ORDER BY " + order;
+            if (order.equals("nome") || order.equals("prezzo") || order.equals("categoria") || order.equals("brand")) {
+                selectSQL += " ORDER BY " + order;
+            }
         }
         try (Connection connection = ds.getConnection();
         		PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
