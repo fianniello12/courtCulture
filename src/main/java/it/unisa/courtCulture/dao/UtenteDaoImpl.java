@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
-
+import java.util.LinkedList;
+import java.util.List;
 import javax.sql.DataSource;
-
-import it.unisa.courtCulture.model.ProdottoBean;
 import it.unisa.courtCulture.model.UtenteBean;
 
 public class UtenteDaoImpl {
@@ -72,6 +70,7 @@ public class UtenteDaoImpl {
             preparedStatement.setInt(1, code);
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
+                
                     bean.setId(rs.getInt("id"));
                     bean.setEmail(rs.getString("email"));
                     bean.setPassword(rs.getString("password"));
@@ -79,7 +78,7 @@ public class UtenteDaoImpl {
                     bean.setCognome(rs.getString("cognome"));
                     bean.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
                     bean.setMetodoPagamento(rs.getString("metodo_pagamento"));
-                    
+                    bean.setRuolo(rs.getString("ruolo"));
                 }
             }
         }
@@ -87,11 +86,85 @@ public class UtenteDaoImpl {
 		return bean;
 	}
 	
-	public synchronized UtenteBean doRetrieveByCognome(String cognome) throws SQLException{
-		
+	public synchronized UtenteBean doRetrieveByEmail(String email) throws SQLException {
+	    String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = ?";
+
+	    try (Connection connection = ds.getConnection();
+	         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
+
+	        preparedStatement.setString(1, email);
+
+	        try (ResultSet rs = preparedStatement.executeQuery()) {
+	            if (rs.next()) {
+	                UtenteBean bean = new UtenteBean();
+
+	                bean.setId(rs.getInt("id"));
+	                bean.setEmail(rs.getString("email"));
+	                bean.setPassword(rs.getString("password"));
+	                bean.setNome(rs.getString("nome"));
+	                bean.setCognome(rs.getString("cognome"));
+	                bean.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
+	                bean.setMetodoPagamento(rs.getString("metodo_pagamento"));
+	                bean.setRuolo(rs.getString("ruolo"));
+
+	                return bean;
+	            }
+	        }
+	    }
+
+	    return null;
+	}
+	
+	public synchronized List<UtenteBean> doRetrieveByCognome(String cognome) throws SQLException{
+		List<UtenteBean> utenti = new LinkedList<>();
+        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE cognome = ?";
+        try (Connection connection = ds.getConnection();
+        		PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
+            preparedStatement.setString(1, cognome);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                	UtenteBean bean= new UtenteBean();
+
+                	bean.setId(rs.getInt("id"));
+                    bean.setEmail(rs.getString("email"));
+                    bean.setPassword(rs.getString("password"));
+                    bean.setNome(rs.getString("nome"));
+                    bean.setCognome(rs.getString("cognome"));
+                    bean.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
+                    bean.setMetodoPagamento(rs.getString("metodo_pagamento"));
+                    bean.setRuolo(rs.getString("ruolo"));    
+                    utenti.add(bean);
+                }
+            }
+        }
+      
+		return utenti;
 	}
 	
 	public List<UtenteBean> doRetrieveAll(String order) throws SQLException{
-		
+	    List<UtenteBean> utenti  = new LinkedList<>();
+        String selectSQL = "SELECT * FROM " + TABLE_NAME;
+        if (order != null && !order.isEmpty()) {
+            if (order.equals("id") || order.equals("email") || order.equals("nome") || order.equals("cognome") || order.equals("ruolo")) {
+                selectSQL += " ORDER BY " + order;
+            }
+        }
+        try (Connection connection = ds.getConnection();
+        		PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+        		ResultSet rs = preparedStatement.executeQuery()) {
+            while (rs.next()) {
+            	UtenteBean bean = new UtenteBean();
+            	bean.setId(rs.getInt("id"));
+            	bean.setEmail(rs.getString("email"));
+            	bean.setPassword(rs.getString("password"));
+            	bean.setNome(rs.getString("nome"));
+            	bean.setCognome(rs.getString("cognome"));
+            	bean.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
+                bean.setMetodoPagamento(rs.getString("metodo_pagamento"));
+                bean.setRuolo(rs.getString("ruolo"));
+                utenti.add(bean);
+            }
+        }
+        return utenti;
 	}
 }

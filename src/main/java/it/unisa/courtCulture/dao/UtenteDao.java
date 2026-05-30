@@ -15,6 +15,8 @@ public interface UtenteDao {
 	
 	public UtenteBean doRetrieveByKey(int code) throws SQLException;
 	
+	public UtenteBean doRetrieveByEmail(String email) throws SQLException;
+	
 	public UtenteBean doRetrieveByCognome(String cognome) throws SQLException;
 	
 	public List<UtenteBean> doRetrieveAll(String order) throws SQLException;
