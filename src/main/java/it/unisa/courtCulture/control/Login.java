@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import it.unisa.courtCulture.dao.UtenteDao;
 import it.unisa.courtCulture.dao.UtenteDaoImpl;
 import it.unisa.courtCulture.model.UtenteBean;
 import jakarta.servlet.RequestDispatcher;
@@ -24,6 +23,7 @@ public class Login extends HttpServlet {
 	
 	private UtenteDaoImpl utenteDao;
 	
+	@Override
 	public void init() throws ServletException{
 		DataSource ds= (DataSource) getServletContext().getAttribute("DataSource");
 		
@@ -34,6 +34,15 @@ public class Login extends HttpServlet {
 		utenteDao = new UtenteDaoImpl(ds);
 	}
 	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/login.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -58,7 +67,7 @@ public class Login extends HttpServlet {
 		
 			if(utente == null) {
 				errors.add("email o password errati");
-				request.setAttribute("errore", errors);
+				request.setAttribute("errors", errors);
 				dispatcher.forward(request, response);
 				return;
 			}
