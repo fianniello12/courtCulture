@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class WelcomeAdmin
  */
-@WebServlet("/WelcomeAdmin")
+@WebServlet("/admin/WelcomeAdmin")
 public class WelcomeAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,6 +28,7 @@ public class WelcomeAdmin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/views/admin/welcomeAdmin.jsp");
+				dispatcher.forward(request, response);
 	}
 
 	/**
