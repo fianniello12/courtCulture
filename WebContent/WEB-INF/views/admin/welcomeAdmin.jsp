@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>court culture</title>
+<title>court culture admin</title>
 </head>
 <body>
-<h1>Sei nella pagina admin</h1>
+<h1>Sei nella pagina admin </h1>
 </body>
 </html>
