@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Benvenuto User</h1>
+	<p> <a href="Logout">Logout</a>
 </body>
 </html>
