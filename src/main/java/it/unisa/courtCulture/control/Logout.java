@@ -32,7 +32,7 @@ public class Logout extends HttpServlet {
 		if (role != null){	
 		    	request.getSession().invalidate();
 		}
-		response.sendRedirect(request.getContextPath() + "/home");	
+		response.sendRedirect(request.getContextPath() + "/Home");	
 	}
 	
 

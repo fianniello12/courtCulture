@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1>Benvenuto User</h1>
-	<p> <a href="Logout">Logout</a>
+	<p> <a href="<%=request.getContextPath()%>/Logout">Logout</a>
 </body>
 </html>
