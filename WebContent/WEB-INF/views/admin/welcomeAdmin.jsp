@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1>Sei nella pagina admin </h1>
+<p> <a href="Logout">Logout</a>
 </body>
 </html>
