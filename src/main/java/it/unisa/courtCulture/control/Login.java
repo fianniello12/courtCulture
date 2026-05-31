@@ -84,9 +84,9 @@ public class Login extends HttpServlet {
             request.getSession().setAttribute("role", utente.getRuolo());
 
             if ("admin".equalsIgnoreCase(utente.getRuolo())) {
-                response.sendRedirect(request.getContextPath() + "/admin/welcome");
+                response.sendRedirect(request.getContextPath() + "/admin/welcomeAdmin");
             } else {
-                response.sendRedirect(request.getContextPath() + "/common/welcome");
+                response.sendRedirect(request.getContextPath() + "/common/welcomeUser");
             }
 			
 		}catch (SQLException e) {
