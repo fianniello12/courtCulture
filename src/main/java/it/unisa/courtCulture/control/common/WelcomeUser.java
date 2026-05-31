@@ -1,5 +1,6 @@
 package it.unisa.courtCulture.control.common;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,8 +27,8 @@ public class WelcomeUser extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/views/common/welcomeUser.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
