@@ -65,9 +65,13 @@ body {
 }
 
 #navLogo {
-   position: absolute;
+   	position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+#nav-image{
+	height: 95px;
 }
 
 #navLogin{
