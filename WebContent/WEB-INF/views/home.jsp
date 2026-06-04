@@ -39,7 +39,23 @@
 	</div>
 	
 </section>
+
+<section class="description">
+	<div class="div-description">
+		<div class="description-text">
+			<h2 class="title-description">Chi siamo?</h2>
 	
+			<p class="paragraf-description">Court Culture ha l’obiettivo di esportare tutto il movimento della pallacanestro, fornendo prodotti per chi vive questo sport come stile di vita, sia dentro che fuori dal campo. 
+			Il catalogo comprende moltissimi prodotti come scarpe, le iconiche jersey delle squadre NBA, numerosi accessori e tanto altro. 
+			Il prodotto principale sono ovviamente le scarpe da gioco, che cercano di unire prestazioni, comfort e design, permettendo agli appassionati di portare il loro stile di vita anche sul parquet.
+			Court Culture non si pone solo come un e-commerce, ma punta a diventare un vero e proprio punto di riferimento per tutti gli appassionati di questo sport.
+			</p>
+		</div>
+		
+		<img  id="description-image"src="images/durant.jpg">
+	</div>
+</section>
+
 </section>
 
 
@@ -47,11 +63,28 @@
 <footer class="footer">
 	
 	<div class="footerLogo">
-		<img src="images/logo-white.png" alt="Court Culture Logo" class="logo-img">
+		<img src="images/footerLogo.png" alt="Court Culture Logo" class="logo-img">
 	</div>
 	
+	<div class="footer-text">
 	<p>&copy; 2026 Court Culture - Tutti i diritti riservati</p>
 	
+	<p>
+    	Court Culture è lo store dedicato alla cultura del basket, 
+    	per chi vive questo sport come stile di vita.
+	</p>
+
+	<p id="footer-info">
+    	Spedizioni rapide | Pagamenti sicuri | Reso entro 14 giorni
+	</p>
+
+	<p>
+	    <a href="shop">Shop</a> |
+	    <a href="Login">Accedi</a> |
+	    <a href="carrello">Carrello</a> |
+	    <a href="contatti">Contatti</a>
+	</p>
+	</div>
 </footer>
 </body>
 </html>

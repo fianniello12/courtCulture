@@ -95,15 +95,14 @@ body {
 
 .main-images{
 	display: flex;
-    justify-content: space-between;
     align-items: center;
-
     gap: 40px;
     width: 100%;
 }
 
 .div-left, .div-right{
-	width: 50%;
+	flex: 1;
+	min-width: 0;
 }
 
 .div-left img, .div-right img{
@@ -111,6 +110,48 @@ body {
     height: 700px;
     object-fit: cover;
     object-position: top center;
+    display: block;
+}
+
+
+.title-description{
+	font-size: 50px;
+	color: #F5F916;
+	text-align: left;
+}
+
+.div-description{
+	display: flex;
+	align-items: center;
+    gap: 40px;
+}
+
+.description{
+	padding: 120px 60px 60px;
+	margin: 0 0 25px;
+}
+
+.paragraf-description{
+	flex:1;
+	font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    
+}
+
+.description-text{
+	flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#description-image{
+	width: 350px;
+    height: auto;
+    object-fit: cover;
     display: block;
 }
 
@@ -123,8 +164,7 @@ body {
 }
 
 .footer{
-	width: 100%;
-    background-color: #000000;
+	background-color: #003488;
     color: white;
 
     text-align: center;
@@ -132,5 +172,17 @@ body {
 
     padding: 30px 60px;
 
-    border-top: 1px;
+    border-top: 1px solid #222;
+}
+.footer-text{
+	color: #F5F916;
+}
+.footer-text a{
+	color: #F5F916;	
+}
+.footer-text a:hover{
+	color: #5C5C5C;
+}
+.footer-text a:visited{
+	color: #5C5C5C;
 }
