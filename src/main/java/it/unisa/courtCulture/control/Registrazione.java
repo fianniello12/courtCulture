@@ -47,7 +47,7 @@ public class Registrazione extends HttpServlet {
 		List<String> errors = new ArrayList<>();
 
         String email = validateField(request.getParameter("email"), "email", errors);
-        String password = validateField(request.getParameter("password"), "password", errors);
+        String password = validateField(request.getParameter("psw"), "password", errors);
         String nome = validateField(request.getParameter("nome"), "nome", errors);
         String cognome = validateField(request.getParameter("cognome"), "cognome", errors);
 

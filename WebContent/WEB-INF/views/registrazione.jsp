@@ -37,9 +37,7 @@
 
         <div class="input-container">
             <label for="indirizzo_spedizione" class="input-label">Indirizzo di spedizione:</label>
-            <input type="text" name="indirizzo_spedizione" id="indirizzo_spedizione" required  
-					onchange="validateFormElem(this, addressPattern, document.getElementById('errorIndirizzo_spedizione'), addressErrorMessage)">
-        	<span id="errorIndirizzo_spedizione"></span> 
+            <input type="text" name="indirizzo_spedizione" id="indirizzo_spedizione">
         </div>
 
         <div class="input-container">
