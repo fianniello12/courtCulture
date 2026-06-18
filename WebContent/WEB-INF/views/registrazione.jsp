@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="styles/registrazione.css" />
-<script src="scripts/validate.js" defer></script></head>
+<script src="scripts/validate.js" defer></script>
+</head>
 <body>
 
 <form action="Registrazione" id="regForm" method="post" onsubmit="return validate()" novalidate>
@@ -37,7 +38,9 @@
 
         <div class="input-container">
             <label for="indirizzo_spedizione" class="input-label">Indirizzo di spedizione:</label>
-            <input type="text" name="indirizzo_spedizione" id="indirizzo_spedizione">
+    		<input type="text" name="indirizzo_spedizione" id="indirizzo_spedizione" required
+    			onchange="validateFormElem(this, addressPattern, document.getElementById('errorAddress'), addressErrorMessage)">
+		    <span id="errorAddress"></span>
         </div>
 
         <div class="input-container">
@@ -57,13 +60,13 @@
 		</div>
 		
         <button type="submit">Registrati</button>
-
+ 	
+ 		<p>	Hai già un account?
+        	<a href="Login">Accedi</a>
+    	</p>
     </form>
 
-    <p>
-        Hai già un account?
-        <a href="Login">Accedi</a>
-    </p>
+   
 
 </body>
 </html>

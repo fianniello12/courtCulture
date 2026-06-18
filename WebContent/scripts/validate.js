@@ -1,13 +1,15 @@
 const nameOrLastnamePattern = /^[A-Za-zÀ-ÿ]+$/;
 const emailPattern = /^\S+@\S+\.\S+$/;
 const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-
+const loginPasswordPattern = /^.{1,}$/;
+const addressPattern = /^(?=.*[0-9])[A-Za-zÀ-ÿ0-9\s,.()'’\/-]{5,100}$/;
 
 const nameErrorMessage = "Il nome deve contenere solo lettere";
 const lastnameErrorMessage = "Il cognome deve contenere solo lettere";
 const emailErrorMessage = "Inserisci una email valida";
 const passwordErrorMessage = "La password deve contenere almeno 8 caratteri, una maiuscola, una minuscola e un numero";
-
+const loginPasswordErrorMessage = "Password non deve essere vuota";
+const addressErrorMessage = "L'indirizzo deve contenere almeno il numero civico ed essere valido";
 
 function validate() {
     let valid = true;
@@ -25,7 +27,9 @@ function validate() {
         valid = false;
     }
 	
-
+	if (!validateFormElem(form.indirizzo_spedizione, addressPattern, document.getElementById("errorAddress"), addressErrorMessage)) {
+	    valid = false;
+	}
 
     if (!validateFormElem(form.psw, passwordPattern, document.getElementById("errorpsw"), passwordErrorMessage)) {
         valid = false;
@@ -36,8 +40,10 @@ function validate() {
     return valid;
 }
 
+
+
 function validateFormElem(formElem, pattern, span, message) {
-    if (pattern.test(formElem.value)) {
+    if (pattern.test(formElem.value())) {
         formElem.classList.remove("error");
         span.innerHTML = "";
         return true;
