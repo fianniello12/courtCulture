@@ -4,26 +4,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="scripts/validate.js" defer></script>
+<link rel="stylesheet" href="styles/login.css" />
 <title>login...</title>
 </head>
+
 <body>
-<% 
-List<String> errors = (List<String>) request.getAttribute("errors");
-if (errors != null){
-	for (String error: errors){ %>
-		<%=error %> <br>		
-	<%
-	}
-}
-%>
-<form action="Login" method="post">
 
-	<label>Email</label>
-	<input type="email" name="email" required>
+<form action="Login" id="logForm" method="post" onsubmit="return validate()" novalidate>
+	<h1 id="title">Accedi</h1>
+	
+	
+		<% 
+		List<String> errors1 = (List<String>) request.getAttribute("errors");
+		if (errors1 != null){
+			for (String error: errors1){ %>
+				<span id="errorServer"><%=error %></span><br>	
+			<%
+			}
+		}
+		%>
+		
+	<div class="input-container">
+    	<label for="email" class="input-label">Email</label>
+    	<input type="email" id="email" name="email" required
+        	onchange="validateFormElem(this, emailPattern, document.getElementById('errorEmail'), emailErrorMessage)">
+    	<span id="errorEmail"></span>
+	</div>
 
-	<label>Password</label>
-	<input type="password" name="password" required>
-
+	<div class="input-container">
+    	<label for="password" class="input-label">Password</label>
+    	<input type="password" id="password" name="password" required>
+	</div>
+	
 	<button type="submit">Accedi</button>
 	<p>Non hai un account? <a href=Registrazione>Registrati</a></p>
 

@@ -66,7 +66,7 @@ public class Login extends HttpServlet {
 			UtenteBean utente = utenteDao.doRetrieveByEmail(email);
 		
 			if(utente == null) {
-				errors.add("email o password errati");
+				errors.add("Email o password errati");
 				request.setAttribute("errors", errors);
 				dispatcher.forward(request, response);
 				return;
@@ -100,6 +100,8 @@ public class Login extends HttpServlet {
             errors.add("Il campo " + fieldName + " non può essere vuoto");
             return "";
         }
+        
+        
         return value.trim();
     }
 	
