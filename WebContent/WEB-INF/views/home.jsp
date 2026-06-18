@@ -81,8 +81,7 @@
 	<p>
 	    <a href="shop">Shop</a> |
 	    <a href="Login">Accedi</a> |
-	    <a href="carrello">Carrello</a> |
-	    <a href="contatti">Contatti</a>
+	    <a href="carrello">Carrello</a> 
 	</p>
 	</div>
 </footer>
