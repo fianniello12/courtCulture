@@ -1,0 +1,38 @@
+@charset "UTF-8";
+body {
+	width: 700px;
+	margin: 0 auto;
+}
+
+legend {
+	padding: 3px;
+	border: 1px solid purple;
+	border-radius: 3px;
+}
+
+fieldset {
+	border: 1px solid purple;
+	border-radius: 7px;
+}
+
+input {
+	border: 1px solid black;
+	border-radius: 2px;
+}
+
+label, input, span {
+	padding: 3px;
+}
+
+label, input {
+	margin-right: 3px;
+}
+
+div {
+	margin: 6px 0 6px 0;
+}
+
+.error {
+	border: thin solid red;
+	font-size: smaller;
+}
