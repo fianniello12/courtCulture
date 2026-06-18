@@ -1,38 +1,110 @@
 @charset "UTF-8";
+
 body {
-	width: 700px;
-	margin: 0 auto;
+    background-color: #000000;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-legend {
-	padding: 3px;
-	border: 1px solid purple;
-	border-radius: 3px;
+form {
+    margin-top: 25px;
+    margin-bottom: 2px;
+    background-color: #111111;
+    padding: 20px;
+
+    border: 5px groove #F5F916;
+
+    width: 400px;
+    text-align: left;
 }
 
-fieldset {
-	border: 1px solid purple;
-	border-radius: 7px;
+#title {
+    font-size: 35px;
+    margin: 10px 0 20px 0;
+    text-align: left;
+}
+.input-container {
+	margin: 10px 0 12px 0;
+	padding:5px;
+	display: flex;
+    flex-direction: column;
 }
 
-input {
-	border: 1px solid black;
-	border-radius: 2px;
+.input-label {
+	font-size: 18px;
+    color: #F5F916;
 }
 
-label, input, span {
-	padding: 3px;
+input,select{
+    flex: 1;
+    background-color: #262626;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    caret-color: white;
+    padding: 5px 5px;
+   
 }
 
-label, input {
-	margin-right: 3px;
+input:focus,select:focus {
+	outline: 2px solid #F5F916;	
+	caret-color: #F5F916;
+	
 }
 
-div {
-	margin: 6px 0 6px 0;
+span {
+    margin-top: 5px;
+    font-size: 13px;
+    color: red;
 }
 
-.error {
-	border: thin solid red;
-	font-size: smaller;
+button {
+    width: 100%;
+    padding: 15px;
+	margin: 10px 0 10px 0;
+
+    background-color: #F5F916;
+    color: #000000;
+    border: none;
+    border-radius: 10px;
+
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background-color: #dfe300;
+    transform: scale(1.02);
+}
+
+p {
+    margin-top: 15px;
+    color: white;
+    font-size: 15px;
+}
+
+p a {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 9px 10px;
+
+    background-color: #F5F916;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 8px;
+
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+p a:hover {
+    background-color: #dfe300;
+    transform: scale(1.05);
 }
