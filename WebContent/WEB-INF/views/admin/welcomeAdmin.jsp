@@ -18,7 +18,7 @@
         <ul class="nav-ul">
 
             <li>
-                <a href="<%= contextPath %>/WelcomeUser">shop</a>
+                <a href="<%= contextPath %>/Shop">shop</a>
             </li>
 
             <li id="navLogo">

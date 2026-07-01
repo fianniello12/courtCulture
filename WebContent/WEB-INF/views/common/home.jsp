@@ -16,12 +16,12 @@
 	
 	<nav class="nav">	
 		<ul class="nav-ul">
-			<li><a href="common/WelcomeUser">shop</a></li>
+			<li><a href="Shop">shop</a></li>
 			<li id="navLogo"><img id="nav-image"src="images/logo-white.png" class="logo-img"></li>
 			<% if (session.getAttribute("username") == null) { %>
-            <li id="navLogin"><a href="Login">Accedi</a></li>
+            <li id="navLogin"><a href="Login">accedi</a></li>
         <% } else { %>
-            <li id="navLogout"><a href="Logout">Logout</a></li>
+            <li id="navLogout"><a href="Logout">logout</a></li>
         <% } %>
 			<li id="navCarrello"><a href="Carrello">carrello</a></li>
 		</ul>
