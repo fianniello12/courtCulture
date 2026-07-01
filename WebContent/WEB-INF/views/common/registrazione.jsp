@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CourtCulture-Registration</title>
 <link rel="stylesheet" href="styles/registrazione.css" />
 <script src="scripts/validate.js" defer></script>
 </head>
 <body>
 
-<form action="Registrazione" id="regForm" method="post" onsubmit="return validate()" novalidate>
+
+<form action="Registrazione" id="regForm" method="post" onsubmit="return validateRegistrazione()" novalidate>
 
 <h1 id="title">Registrazione</h1>
 
@@ -62,7 +63,7 @@
         <button type="submit">Registrati</button>
  	
  		<p>	Hai già un account?
-        	<a href="Login">Accedi</a>
+        	<a href="Login">Accedi</a><a href="Home">Home</a>
     	</p>
     </form>
 

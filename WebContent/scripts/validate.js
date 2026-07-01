@@ -1,4 +1,4 @@
-const nameOrLastnamePattern = /^[A-Za-zÀ-ÿ]+$/;
+const nameOrLastnamePattern = /^[A-Za-zÀ-ÿ\s'’-]{2,50}$/;
 const emailPattern = /^\S+@\S+\.\S+$/;
 const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 const loginPasswordPattern = /^.{1,}$/;
@@ -8,10 +8,10 @@ const nameErrorMessage = "Il nome deve contenere solo lettere";
 const lastnameErrorMessage = "Il cognome deve contenere solo lettere";
 const emailErrorMessage = "Inserisci una email valida";
 const passwordErrorMessage = "La password deve contenere almeno 8 caratteri, una maiuscola, una minuscola e un numero";
-const loginPasswordErrorMessage = "Password non deve essere vuota";
+const loginPasswordErrorMessage = "La password non deve essere vuota";
 const addressErrorMessage = "L'indirizzo deve contenere almeno il numero civico ed essere valido";
 
-function validate() {
+function validateRegistrazione() {
     let valid = true;
     let form = document.getElementById("regForm");
 
@@ -26,31 +26,44 @@ function validate() {
     if (!validateFormElem(form.email, emailPattern, document.getElementById("errorEmail"), emailErrorMessage)) {
         valid = false;
     }
-	
-	if (!validateFormElem(form.indirizzo_spedizione, addressPattern, document.getElementById("errorAddress"), addressErrorMessage)) {
-	    valid = false;
-	}
+
+    if (!validateFormElem(form.indirizzo_spedizione, addressPattern, document.getElementById("errorAddress"), addressErrorMessage)) {
+        valid = false;
+    }
 
     if (!validateFormElem(form.psw, passwordPattern, document.getElementById("errorpsw"), passwordErrorMessage)) {
         valid = false;
     }
-	
-	
 
     return valid;
 }
 
+function validateLogin() {
+    let valid = true;
+    let form = document.getElementById("loginForm");
 
+    if (!validateFormElem(form.email, emailPattern, document.getElementById("errorEmail"), emailErrorMessage)) {
+        valid = false;
+    }
+
+    if (!validateFormElem(form.password, loginPasswordPattern, document.getElementById("errorPassword"), loginPasswordErrorMessage)) {
+        valid = false;
+    }
+
+    return valid;
+}
 
 function validateFormElem(formElem, pattern, span, message) {
-    if (pattern.test(formElem.value())) {
+    const value = formElem.value.trim();
+
+    if (pattern.test(value)) {
         formElem.classList.remove("error");
-        span.innerHTML = "";
+        span.textContent = "";
         return true;
     }
 
     formElem.classList.add("error");
-    span.innerHTML = message;
+    span.textContent = message;
     span.style.color = "red";
     return false;
 }

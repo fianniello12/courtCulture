@@ -6,13 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="scripts/validate.js" defer></script>
 <link rel="stylesheet" href="styles/login.css" />
-<title>login...</title>
+<title>CourtCulture-Login</title>
 </head>
 
 <body>
 
-<form action="Login" id="logForm" method="post" onsubmit="return validate()" novalidate>
-	<h1 id="title">Accedi</h1>
+
+<form action="Login" id="loginForm" method="post" onsubmit="return validateLogin()" novalidate>
+	
+<h1 id="title">Accedi</h1>
 	
 	
 		<% 
@@ -33,12 +35,14 @@
 	</div>
 
 	<div class="input-container">
-    	<label for="password" class="input-label">Password</label>
-    	<input type="password" id="password" name="password" required>
-	</div>
+    <label for="password" class="input-label">Password</label>
+    <input type="password" id="password" name="password" required
+        onchange="validateFormElem(this, loginPasswordPattern, document.getElementById('errorPassword'), loginPasswordErrorMessage)">
+    <span id="errorPassword"></span>
+</div>
 	
 	<button type="submit">Accedi</button>
-	<p>Non hai un account? <a href=Registrazione>Registrati</a></p>
+	<p>Non hai un account?	<a href="Registrazione">Registrati</a><a href="Home">Home</a></p>
 
 </form>
 </body>

@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/common/login.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -79,7 +79,7 @@ public class Login extends HttpServlet {
                 return;
             }
 			
-			request.getSession().setAttribute("utente", utente);
+			request.getSession().setAttribute("email", utente.getEmail());
             request.getSession().setAttribute("idUtente", utente.getId());
             request.getSession().setAttribute("role", utente.getRuolo());
 
