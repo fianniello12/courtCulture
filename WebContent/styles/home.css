@@ -28,28 +28,26 @@ body {
     background-color: #000000;
 }
 
-.nav {
+.nav{
     width: 100%;
-
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
 }
 
-.nav-left {
-    justify-self: start;
-}
-
-.nav-center {
-    justify-self: center;
-}
-
-.nav-right {
-    justify-self: end;
+.nav-ul {
+	position: relative;
 
     display: flex;
     align-items: center;
-    gap: 45px;
+
+    width: 100%;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-ul li{
+	display: flex;
+    align-items: center;
 }
 
 .navbar a {
@@ -65,9 +63,30 @@ body {
 .navbar a:hover {
     opacity: 0.7;
 }
+#navAdmin{
+	margin-left: 45px;	
+}
 
-#nav-image {
-    height: 95px;
+#navLogo {
+   	position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#nav-image{
+	height: 95px;
+}
+
+#navLogin{
+	margin-left: auto;
+}
+
+#navLogout{
+	margin-left: auto;
+}
+
+#navCarrello{
+    margin-left: 45px;
 }
 
 .logo-img {
