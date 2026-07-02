@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+body {
+	min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: #000;
+    display: flex;
+	flex-direction: column;
+	margin: 0;	
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 95px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 60px;
+    z-index: 10;
+
+    background-color: #000000;
+}
+
+.nav{
+    width: 100%;
+}
+
+.nav-ul {
+	position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-ul li{
+	display: flex;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.navbar a:hover {
+    opacity: 0.7;
+}
+
+#navLogo {
+   	position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#nav-image{
+	height: 95px;
+}
+
+#navLogin{
+	margin-left: auto;
+}
+
+#navLogout{
+	margin-left: auto;
+}
+
+#navCarrello{
+    margin-left: 45px;
+}
+
+.logo-img {
+    width: 170px;
+    height: auto;
+    display: block;
+}
+
+#catalog{
+	margin-top: 95px;
+	min-height: 100vh;
+
+    background-image: url("../images/nocta.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#catalog h1, #catalog h2{
+	margin-left: 20px;	
+}
+
+h1{
+	font-size: 45px;
+}
+
+#null{
+	margin-left: 20px;
+}
+	
+.footerLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.footer{
+	background-color: #003488;
+    color: white;
+
+    text-align: center;
+    font-size: 75%;
+
+    padding: 30px 60px;
+
+    border-top: 1px solid #222;
+}
+.footer-text{
+	color: #F5F916;
+}
+.footer-text a{
+	color: #F5F916;	
+}
+.footer-text a:hover{
+	color: #5C5C5C;
+}
+.footer-text a:visited{
+	color: #5C5C5C;
+}
