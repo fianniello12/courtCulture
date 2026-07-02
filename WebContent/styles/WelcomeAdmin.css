@@ -1,0 +1,307 @@
+@charset "UTF-8";
+
+body {
+	min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: #000;
+    display: flex;
+	flex-direction: column;
+	margin: 0;	
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 95px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 60px;
+    z-index: 10;
+
+    background-color: #000000;
+}
+
+.nav{
+    width: 100%;
+}
+
+.nav-ul {
+	position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-ul li{
+	display: flex;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.navbar a:hover {
+    opacity: 0.7;
+}
+#navAdmin{
+	margin-left: 45px;	
+}
+
+#navLogo {
+   	position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#nav-image{
+	height: 95px;
+}
+
+#navLogin{
+	margin-left: auto;
+}
+
+#navLogout{
+	margin-left: auto;
+}
+
+#navCarrello{
+    margin-left: 45px;
+}
+
+.logo-img {
+    width: 170px;
+    height: auto;
+    display: block;
+}
+
+.admin-product-section {
+    min-height: 100vh;
+
+    padding: 100px 60px 80px 60px;
+
+    background-color: #000;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    
+    background-image: url("../images/nocta2.jpg");
+    background-size: cover;
+    background-position: center;
+    
+    
+}
+
+
+.admin-product-section h1 {
+    margin-bottom: 35px;
+
+    font-size: 42px;
+    color: #F5F916;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.admin-products-section h2 {
+    margin-bottom: 30px;
+
+    font-size: 34px;
+    color: #F5F916;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.admin-products-section p {
+    color: white;
+    font-size: 18px;
+}
+
+.admin-product-section form {
+    width: 100%;
+    max-width: 650px;
+
+    background-color: black;
+
+    padding: 40px;
+
+    border-radius: 20px;
+    border: 1px solid rgba(245, 249, 22, 0.4);
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+    
+}
+
+.admin-product-section label {
+    font-size: 14px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    color: #F5F916;
+}
+
+.admin-product-section input,
+.admin-product-section textarea {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: white;
+    color: black;
+
+    font-size: 15px;
+
+    box-sizing: border-box;
+    outline: none;
+}
+
+.admin-product-section textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.admin-product-section input:focus,
+.admin-product-section textarea:focus {
+    outline: 2px solid #F5F916;
+}
+
+.admin-product-section input[type="file"] {
+    background-color: transparent;
+    color: white;
+
+    padding-left: 0;
+}
+
+.admin-product-section button {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: #F5F916;
+    color: black;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.admin-product-section button:hover {
+    transform: translateY(-3px);
+    opacity: 0.85;
+}
+
+.admin-products-section table {
+    width: 100%;
+    max-width: 1100px;
+
+	margin: 35px;
+    border-collapse: collapse;
+    border: none;
+
+    background-color: black;
+
+    border-radius: 18px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+}
+
+.admin-products-section thead {
+    background-color: #F5F916;
+    color: #003488;
+}
+
+.admin-products-section th {
+    padding: 16px;
+
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+.admin-products-section td {
+    padding: 15px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    font-size: 15px;
+}
+
+.admin-products-section tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.admin-products-section tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.admin-products-section td img {
+    width: 80px;
+    height: 80px;
+
+    object-fit: contain;
+
+    background-color: #fff;
+
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.admin-products-section form {
+    margin: 0;
+}
+
+#table-product{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	
+	background-image: url("../images/nocta3.jpg");
+    background-size: cover;
+    background-position: center;
+}

@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>court culture admin</title>
+<link rel="stylesheet" href="styles/WelcomeAdmin.css"> 
+
 </head>
 <body>
 
@@ -50,40 +52,40 @@ Collection<ProdottoBean> prodotti = (Collection<ProdottoBean>) request.getAttrib
 
         </ul>
     </nav>
-
-<h1>Welcomeback admin </h1>    
 </header>
 
-<section>
+<section class="admin-product-section">
+	<h1>Welcomeback admin </h1>    
+
 	<form action="InserisciProdotto" method="post" enctype="multipart/form-data">
 
-    <label>Nome:</label>
-    <input type="text" name="nome" required>
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" id="nome" required>
 
-    <label>Descrizione:</label>
-    <textarea name="descrizione" required></textarea>
+    <label for="descrizione">Descrizione:</label>
+    <textarea name="descrizione" id="descrizione" required></textarea>
 
-    <label>Prezzo:</label>
-    <input type="number" step="0.01" name="prezzo" required>
+    <label for="prezzo">Prezzo:</label>
+    <input type="number" step="0.01" name="prezzo" id="prezzo" required>
 
-    <label>Quantità:</label>
-    <input type="number" name="quantita" required>
+    <label for="quantita">Quantità:</label>
+    <input type="number" name="quantita" id="quantita" required>
 
-    <label>Categoria:</label>
-    <input type="text" name="categoria" required>
+    <label for="categoria">Categoria:</label>
+    <input type="text" name="categoria" id="categoria" required>
 
-    <label>Brand:</label>
-    <input type="text" name="brand" required>
+    <label for="brand">Brand:</label>
+    <input type="text" name="brand" id="brand" required>
 
-    <label>Immagine:</label>
-    <input type="file" name="immagine" accept="image/*" required>
+    <label for="immagine">Immagine:</label>
+    <input type="file" name="immagine" id="immagine" accept="image/*" required>
 
     <button type="submit">Inserisci prodotto</button>
 
-</form>
+	</form>
 </section>
 
-<section>
+<section id="table-product"class="admin-products-section">
 
     <h2>Gestione prodotti</h2>
 

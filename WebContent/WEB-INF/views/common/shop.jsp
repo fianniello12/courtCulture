@@ -120,8 +120,12 @@
 	</p>
 
 	<p>
-	    <a href="shop">Shop</a> |
-	    <a href="Login">Accedi</a> |
+	    <a href="Home">Home</a> |
+	   <% if (session.getAttribute("email") == null) { %>
+            <a href="Login">Accedi</a>
+        <% } else { %>
+            <a href="Logout">Logout</a>
+        <% } %>|
 	    <a href="carrello">Carrello</a> 
 	</p>
 	</div>
