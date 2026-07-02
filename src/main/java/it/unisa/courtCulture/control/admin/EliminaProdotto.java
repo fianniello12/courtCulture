@@ -30,14 +30,16 @@ public class EliminaProdotto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
+    	HttpSession session = request.getSession(false);
 
-        if (session == null || session.getAttribute("role") == null
-                || !session.getAttribute("role").equals("admin")) {
+    	if (session == null 
+    	        || session.getAttribute("email") == null
+    	        || session.getAttribute("role") == null
+    	        || !session.getAttribute("role").equals("admin")) {
 
-            response.sendRedirect(request.getContextPath() + "/Login");
-            return;
-        }
+    	    response.sendRedirect(request.getContextPath() + "/Login");
+    	    return;
+    	}
 
         try {
             int codice = Integer.parseInt(request.getParameter("codice"));
@@ -48,7 +50,7 @@ public class EliminaProdotto extends HttpServlet {
                 request.setAttribute("error", "Prodotto non trovato o non eliminato.");
             }
 
-            response.sendRedirect(request.getContextPath() + "/Admin");
+            response.sendRedirect(request.getContextPath() + "/WelcomeAdmin");
 
         } catch (NumberFormatException e) {
             request.setAttribute("error", "Codice prodotto non valido.");

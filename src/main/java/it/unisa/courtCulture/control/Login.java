@@ -54,8 +54,7 @@ public class Login extends HttpServlet {
 		email = validateField(email, "email", errors);
 		password = validateField(password, "password", errors);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/login.jsp");		
-		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/common/login.jsp");		
 		if (!errors.isEmpty()) {
 			request.setAttribute("errors", errors);
 			dispatcher.forward(request, response);

@@ -14,7 +14,7 @@
 String contextPath = request.getContextPath();
 Collection<ProdottoBean> prodotti = (Collection<ProdottoBean>) request.getAttribute("prodotti");
 %>
-%>
+
 
 <header class="navbar">
     <nav class="nav">	
@@ -134,7 +134,7 @@ Collection<ProdottoBean> prodotti = (Collection<ProdottoBean>) request.getAttrib
                         <td><%= prodotto.getQuantitaDisponibile() %></td>
 
                         <td>
-                            <form action="EliminaProdotto" method="post" onsubmit="return confirm('Sei sicuro di voler eliminare questo prodotto?');">
+                            <form action="EliminaProdotto" method="post">
                                 <input type="hidden" name="codice" value="<%= prodotto.getCodice() %>">
                                 <button type="submit">Elimina</button>
                             </form>

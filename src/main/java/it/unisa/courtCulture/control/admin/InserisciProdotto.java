@@ -104,7 +104,7 @@ public class InserisciProdotto extends HttpServlet {
                 prodottoDao.doUpdateImage(prodotto);
             }
 
-            response.sendRedirect(request.getContextPath() + "/Shop");
+            response.sendRedirect(request.getContextPath() + "/WelcomeAdmin");
 
         } catch (NumberFormatException e) {
             request.setAttribute("error", "Prezzo o quantità non validi.");
