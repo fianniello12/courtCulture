@@ -7,7 +7,6 @@
 <title>court culture admin</title>
 </head>
 <body>
-<h1>Sei nella pagina admin </h1>
 
 <%
     String contextPath = request.getContextPath();
@@ -47,7 +46,38 @@
 
         </ul>
     </nav>
+
+<h1>Welcomeback admin </h1>    
 </header>
+
+<section>
+	<form action="InserisciProdotto" method="post" enctype="multipart/form-data">
+
+    <label>Nome:</label>
+    <input type="text" name="nome" required>
+
+    <label>Descrizione:</label>
+    <textarea name="descrizione" required></textarea>
+
+    <label>Prezzo:</label>
+    <input type="number" step="0.01" name="prezzo" required>
+
+    <label>Quantità:</label>
+    <input type="number" name="quantita" required>
+
+    <label>Categoria:</label>
+    <input type="text" name="categoria" required>
+
+    <label>Brand:</label>
+    <input type="text" name="brand" required>
+
+    <label>Immagine:</label>
+    <input type="file" name="immagine" accept="image/*" required>
+
+    <button type="submit">Inserisci prodotto</button>
+
+</form>
+</section>
 
 </body>
 </html>
