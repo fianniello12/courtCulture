@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class WelcomeAdmin
  */
-@WebServlet("/admin/WelcomeAdmin")
+@WebServlet("/WelcomeAdmin")
 public class WelcomeAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -13,20 +13,31 @@
 <body>
 
 <header class="navbar">
-	
-	<nav class="nav">	
-		<ul class="nav-ul">
-			<li><a href="Shop">shop</a></li>
-			<li id="navLogo"><img id="nav-image"src="images/logo-white.png" class="logo-img"></li>
-			<% if (session.getAttribute("username") == null) { %>
-            <li id="navLogin"><a href="Login">accedi</a></li>
-        <% } else { %>
-            <li id="navLogout"><a href="Logout">logout</a></li>
-        <% } %>
-			<li id="navCarrello"><a href="Carrello">carrello</a></li>
-		</ul>
-	</nav>
+    <nav class="nav">
 
+        <div class="nav-left">
+            <a href="Shop">shop</a>
+        </div>
+
+        <div class="nav-center">
+            <a href="Home">
+                <img id="nav-image" src="images/logo-white.png" class="logo-img" alt="Court Culture Logo">
+            </a>
+        </div>
+
+        <div class="nav-right">
+
+            <% if (session.getAttribute("email") == null) { %>
+                <a href="Login">accedi</a>
+            <% } else { %>
+                <a href="Logout">logout</a>
+            <% } %>
+
+            <a href="Carrello">carrello</a>
+
+        </div>
+
+    </nav>
 </header>
 
 
