@@ -22,6 +22,12 @@
 	<nav class="nav">	
 		<ul class="nav-ul">
 			<li><a href="Home">home</a></li>
+			<% if (session.getAttribute("role") != null 
+		            && session.getAttribute("role").equals("admin")) { %>
+                <li id="navAdmin">
+                    <a href="WelcomeAdmin">admin</a>
+                </li>
+            <% } %>
 			<li id="navLogo"><img id="nav-image"src="images/logo-white.png" class="logo-img"></li>
 			<% if (session.getAttribute("email") == null) { %>
             <li id="navLogin"><a href="Login">accedi</a></li>
@@ -83,10 +89,6 @@
                             Disponibili: <%= prodotto.getQuantitaDisponibile() %>
                         </p>
 
-                        <a class="product-button" 
-                           href="<%= contextPath %>/DettaglioProdotto?codice=<%= prodotto.getCodice() %>">
-                            Dettagli
-                        </a>
                     </div>
 
                 </div>
