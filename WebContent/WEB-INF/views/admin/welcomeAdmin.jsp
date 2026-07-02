@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Collection" %>
+<%@ page import="it.unisa.courtCulture.model.ProdottoBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,9 @@
 <body>
 
 <%
-    String contextPath = request.getContextPath();
+String contextPath = request.getContextPath();
+Collection<ProdottoBean> prodotti = (Collection<ProdottoBean>) request.getAttribute("prodotti");
+%>
 %>
 
 <header class="navbar">
@@ -77,6 +81,72 @@
     <button type="submit">Inserisci prodotto</button>
 
 </form>
+</section>
+
+<section>
+
+    <h2>Gestione prodotti</h2>
+
+    <% if (prodotti == null || prodotti.isEmpty()) { %>
+
+        <p>Nessun prodotto presente nel catalogo.</p>
+
+    <% } else { %>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Codice</th>
+                    <th>Immagine</th>
+                    <th>Nome</th>
+                    <th>Brand</th>
+                    <th>Categoria</th>
+                    <th>Prezzo</th>
+                    <th>Quantità</th>
+                    <th>Azione</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% for (ProdottoBean prodotto : prodotti) { %>
+
+                    <tr>
+                        <td><%= prodotto.getCodice() %></td>
+
+                        <td>
+                            <% if (prodotto.getPathImmagine() != null && !prodotto.getPathImmagine().isEmpty()) { %>
+                                <img 
+                                    src="<%= contextPath %>/<%= prodotto.getPathImmagine() %>" 
+                                    alt="<%= prodotto.getNome() %>" 
+                                    width="80">
+                            <% } else { %>
+                                <img 
+                                    src="<%= contextPath %>/images/no-image.png" 
+                                    alt="Immagine non disponibile" 
+                                    width="80">
+                            <% } %>
+                        </td>
+
+                        <td><%= prodotto.getNome() %></td>
+                        <td><%= prodotto.getBrand() %></td>
+                        <td><%= prodotto.getCategoria() %></td>
+                        <td>€ <%= prodotto.getPrezzo() %></td>
+                        <td><%= prodotto.getQuantitaDisponibile() %></td>
+
+                        <td>
+                            <form action="EliminaProdotto" method="post" onsubmit="return confirm('Sei sicuro di voler eliminare questo prodotto?');">
+                                <input type="hidden" name="codice" value="<%= prodotto.getCodice() %>">
+                                <button type="submit">Elimina</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                <% } %>
+            </tbody>
+        </table>
+
+    <% } %>
+
 </section>
 
 </body>
