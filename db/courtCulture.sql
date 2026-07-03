@@ -38,6 +38,8 @@ CREATE TABLE ordine (
 	data_ordine DATE,
 	stato_ordine VARCHAR(50) DEFAULT 'in elaborazione',
 	totale_ordine DECIMAL(10,2) DEFAULT 0.00,
+	indirizzo_spedizione VARCHAR(255) NOT NULL,
+	metodo_pagamento VARCHAR(50) NOT NULL;
 
 	FOREIGN KEY (id_utente) REFERENCES utente(id)
 		ON UPDATE CASCADE

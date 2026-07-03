@@ -76,18 +76,29 @@
 		<p>Prezzo: €<%= prodotto.getPrezzo() %></p>
 		<p>Disponibilità: <%= prodotto.getQuantitaDisponibile() %></p>
 	
-		<form action="<%= contextPath %>/Carrello" method="post">
-                <input type="hidden" name="codice" value="<%= prodotto.getCodice() %>">
+		<form id="formCarrello">
+                <input type="hidden" name="codice" id="codice" value="<%= prodotto.getCodice() %>">
+                
                 <label for="taglia">Taglia:</label>
         			<select name="taglia" id="taglia" required>
-	            			<% for (int taglia = 37; taglia <= 48; taglia++) { %>
+	            			<% for (int taglia = 35; taglia <= 48; taglia++) { %>
 	                			<option value="<%= taglia %>" ><%= taglia %></option>
 	           			 	<% } %>
         			</select>
+        			
         		<label for="quantita">Quantità:</label>
                 <input type="number" id="quantita" name="quantita" value="1" min="1" max="<%= prodotto.getQuantitaDisponibile()%>">
+                
                 <button type="submit">Aggiungi al carrello</button>
         </form>
+        <p id="messaggioCarrello"></p>
+        
+        <script>
+        	const contextPath="<%= contextPath %>";
+        </script>
+        
+        <script src="scripts/carrello.js"></script>
+        
 	</div>
 
 </section>
