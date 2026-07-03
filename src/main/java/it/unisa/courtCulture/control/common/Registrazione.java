@@ -1,4 +1,4 @@
-package it.unisa.courtCulture.control;
+package it.unisa.courtCulture.control.common;
 
 import java.io.IOException;
 import java.sql.SQLException;

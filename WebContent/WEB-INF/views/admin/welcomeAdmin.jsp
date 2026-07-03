@@ -21,18 +21,18 @@ Collection<ProdottoBean> prodotti = (Collection<ProdottoBean>) request.getAttrib
 <header class="navbar">
     <nav class="nav">	
         <ul class="nav-ul">
-
+			
+			<li>
+				<a href="Home">home</a>
+			</li>
+			
             <li>
-                <a href="<%= contextPath %>/Shop">shop</a>
+                <a id="navShop"href="Shop">shop</a>
             </li>
 
             <li id="navLogo">
-                <a href="<%= contextPath %>/Home">
-                    <img 
-                        id="nav-image"
-                        src="<%= contextPath %>/images/logo-white.png" 
-                        class="logo-img"
-                        alt="Court Culture Logo">
+                <a href="Home">
+                    <img id="nav-image" src="<%= contextPath %>/images/logo-white.png" class="logo-img" alt="Court Culture Logo">
                 </a>
             </li>
 
@@ -105,6 +105,7 @@ Collection<ProdottoBean> prodotti = (Collection<ProdottoBean>) request.getAttrib
                     <th>Categoria</th>
                     <th>Prezzo</th>
                     <th>Quantità</th>
+                    <th>Attivo</th>
                     <th>Azione</th>
                 </tr>
             </thead>
@@ -112,44 +113,77 @@ Collection<ProdottoBean> prodotti = (Collection<ProdottoBean>) request.getAttrib
             <tbody>
                 <% for (ProdottoBean prodotto : prodotti) { %>
 
-                    <tr>
-                        <td><%= prodotto.getCodice() %></td>
+                    <% 
+    String formId = "modificaProdotto" + prodotto.getCodice(); 
+%>
 
-                        <td>
-                            <% if (prodotto.getPathImmagine() != null && !prodotto.getPathImmagine().isEmpty()) { %>
-                                <img 
-                                    src="<%= contextPath %>/<%= prodotto.getPathImmagine() %>" 
-                                    alt="<%= prodotto.getNome() %>" 
-                                    width="80">
-                            <% } else { %>
-                                <img 
-                                    src="<%= contextPath %>/images/no-image.png" 
-                                    alt="Immagine non disponibile" 
-                                    width="80">
-                            <% } %>
-                        </td>
+<tr>
 
-                        <td><%= prodotto.getNome() %></td>
-                        <td><%= prodotto.getBrand() %></td>
-                        <td><%= prodotto.getCategoria() %></td>
-                        <td>€ <%= prodotto.getPrezzo() %></td>
-                        <td><%= prodotto.getQuantitaDisponibile() %></td>
+     <form action="ModificaProdotto" method="post">
 
-                        <td>
-                            <form action="EliminaProdotto" method="post">
-                                <input type="hidden" name="codice" value="<%= prodotto.getCodice() %>">
-                                <button type="submit">Elimina</button>
-                            </form>
-                        </td>
-                    </tr>
+		<td>
+			<%= prodotto.getCodice() %>
+			<input type="hidden" name="codice" value="<%= prodotto.getCodice() %>">
+		</td>
 
-                <% } %>
+		<td>
+			<% if (prodotto.getPathImmagine() != null && !prodotto.getPathImmagine().isEmpty()) { %>
+				<img src="<%= contextPath %>/<%= prodotto.getPathImmagine() %>" alt="<%= prodotto.getNome() %>" width="80">
+			<% } else { %>
+				<img src="<%= contextPath %>/images/no-image.png" alt="Immagine non disponibile" width="80">
+			<% } %>
+		</td>
+
+        <td>
+        	<input type="text" name="nome" value="<%= prodotto.getNome() %>" required>
+		</td>
+
+		<td>
+			<input type="text" name="brand" value="<%= prodotto.getBrand() %>" required>
+		</td>
+
+		<td>
+			<input type="text" name="categoria" value="<%= prodotto.getCategoria() %>" required>
+		</td>
+
+		<td>
+			<input type="number"name="prezzo" value="<%= prodotto.getPrezzo() %>" required>
+		</td>
+
+		<td>
+			<input type="number" name="quantita" value="<%= prodotto.getQuantitaDisponibile() %>" required>
+		</td>
+
+		<td>
+			<select name="attivo">
+				<option value="true" <%= prodotto.isAttivo() ? "selected" : "" %>>
+					Sì
+                </option>
+				
+				<option value="false" <%= !prodotto.isAttivo() ? "selected" : "" %>>
+					No
+				</option>
+            </select>
+		</td>
+
+		<td>
+			<button type="submit">Modifica</button>
+		</form>
+		
+		<form action="EliminaProdotto" method="post">
+			<input type="hidden" name="codice" value="<%= prodotto.getCodice() %>">
+			<button type="submit">Elimina</button>
+		</form>
+   </tr>
+
+   <% } %>
             </tbody>
         </table>
 
     <% } %>
 
 </section>
+
 
 </body>
 </html>

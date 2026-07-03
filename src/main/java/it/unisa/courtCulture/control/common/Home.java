@@ -1,4 +1,4 @@
-package it.unisa.courtCulture.control;
+package it.unisa.courtCulture.control.common;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

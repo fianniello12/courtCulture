@@ -53,7 +53,9 @@
         <% } else { %>
 
             <% for (ProdottoBean prodotto : prodotti) { %>
-
+			<% if(prodotto.isAttivo()){ %>
+				<a class="productLink" href="DettaglioProdotto?codice=<%= prodotto.getCodice() %>">
+			
                 <div class="product-card">
 
                     <div class="product-image-box">
@@ -92,7 +94,8 @@
                     </div>
 
                 </div>
-
+                </a>
+			<% } %>
             <% } %>
 
         <% } %>

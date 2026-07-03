@@ -142,6 +142,16 @@ h1{
     }
 }
 
+.productLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.productLink:visited {
+    color: inherit;
+}
+
 .product-card {
     background-color: rgba(0, 0, 0, 0.85);
 
