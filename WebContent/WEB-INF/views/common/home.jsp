@@ -93,7 +93,7 @@
         <% } else { %>
             <a href="Logout">Logout</a>
         <% } %>|
-	    <a href="carrello">Carrello</a> 
+	    <a href="Carrello">Carrello</a> 
 	</p>
 	</div>
 </footer>

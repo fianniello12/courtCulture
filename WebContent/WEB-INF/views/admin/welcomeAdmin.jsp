@@ -32,22 +32,22 @@ Collection<ProdottoBean> prodotti = (Collection<ProdottoBean>) request.getAttrib
 
             <li id="navLogo">
                 <a href="Home">
-                    <img id="nav-image" src="<%= contextPath %>/images/logo-white.png" class="logo-img" alt="Court Culture Logo">
+                    <img id="nav-image" src="images/logo-white.png" class="logo-img" alt="Court Culture Logo">
                 </a>
             </li>
 
             <% if (session.getAttribute("email") == null) { %>
                 <li id="navLogin">
-                    <a href="<%= contextPath %>/Login">Accedi</a>
+                    <a href="Login">Accedi</a>
                 </li>
             <% } else { %>
                 <li id="navLogout">
-                    <a href="<%= contextPath %>/Logout">Logout</a>
+                    <a href="Logout">Logout</a>
                 </li>
             <% } %>
 
             <li id="navCarrello">
-                <a href="<%= contextPath %>/Carrello">carrello</a>
+                <a href="Carrello">carrello</a>
             </li>
 
         </ul>

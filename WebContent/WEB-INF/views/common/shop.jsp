@@ -28,7 +28,11 @@
                     <a href="WelcomeAdmin">admin</a>
                 </li>
             <% } %>
-			<li id="navLogo"><img id="nav-image"src="images/logo-white.png" class="logo-img"></li>
+			<li id="navLogo">
+				<a href="Home">
+					<img id="nav-image"src="images/logo-white.png" class="logo-img">
+				</a>	
+			</li>
 			<% if (session.getAttribute("email") == null) { %>
             <li id="navLogin"><a href="Login">accedi</a></li>
         <% } else { %>
@@ -129,7 +133,7 @@
         <% } else { %>
             <a href="Logout">Logout</a>
         <% } %>|
-	    <a href="carrello">Carrello</a> 
+	    <a href="Carrello">Carrello</a> 
 	</p>
 	</div>
 </footer>
