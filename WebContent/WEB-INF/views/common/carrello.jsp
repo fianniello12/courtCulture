@@ -14,8 +14,7 @@
 <meta charset="UTF-8">
 <title>Carrello</title>
 
-<link rel="stylesheet" href="<%= contextPath %>/styles/carrello.css">
-</head>
+<link rel="stylesheet"href="<%= contextPath %>/styles/carrello.css">
 
 <body>
 
