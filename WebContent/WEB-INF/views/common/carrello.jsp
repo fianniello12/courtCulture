@@ -173,9 +173,11 @@
 
 </footer>
 
+<script>
+    var contextPath = "<%= contextPath %>";
+</script>
 
-
-<script src="scripts/carrelloPage.js"></script>
+<script src="<%= contextPath %>/scripts/carrelloPage.js"></script>
 
 </body>
 </html>
