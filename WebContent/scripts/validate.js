@@ -3,6 +3,7 @@ const emailPattern = /^\S+@\S+\.\S+$/;
 const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 const loginPasswordPattern = /^.{1,}$/;
 const addressPattern = /^(?=.*[0-9])[A-Za-zÀ-ÿ0-9\s,.()'’\/-]{5,100}$/;
+const cardNumberPattern = /^(?:\d\s*){16}$/;
 
 const nameErrorMessage = "Il nome deve contenere solo lettere";
 const lastnameErrorMessage = "Il cognome deve contenere solo lettere";
@@ -10,6 +11,7 @@ const emailErrorMessage = "Inserisci una email valida";
 const passwordErrorMessage = "La password deve contenere almeno 8 caratteri, una maiuscola, una minuscola e un numero";
 const loginPasswordErrorMessage = "La password non deve essere vuota";
 const addressErrorMessage = "L'indirizzo deve contenere almeno il numero civico ed essere valido";
+const cardNumberMessage = "Il numero della carta di credito deve contenere essattamente 16 numeri";
 
 function validateRegistrazione() {
     let valid = true;
@@ -35,6 +37,10 @@ function validateRegistrazione() {
         valid = false;
     }
 
+	if (!validateFormElem(form.num, cardNumberPattern, document.getElementById("errorNum"), cardNumberMessage)) {
+	        valid = false;
+	    }
+	
     return valid;
 }
 

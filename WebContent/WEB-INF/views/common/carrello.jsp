@@ -15,7 +15,7 @@
 <title>Carrello</title>
 
 <link rel="stylesheet"href="<%= contextPath %>/styles/carrello.css">
-
+<script src="scripts/validate.js" defer></script>
 <body>
 
 <header class="navbar">
@@ -88,21 +88,15 @@
 
             <h2>Conferma ordine</h2>
 
-            <form id="formOrdine">
+            <form action="ConfermaOrdine" method="post" id="formOrdine">
 
                 <label for="indirizzoSpedizione">Indirizzo di spedizione:</label>
-                <input 
-                    type="text" 
-                    id="indirizzoSpedizione" 
-                    name="indirizzoSpedizione" 
-                    placeholder="Inserisci indirizzo completo"
-                    required>
+                <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" placeholder="Inserisci indirizzo completo" required
+    			onchange="validateFormElem(this, addressPattern, document.getElementById('errorAddress'), addressErrorMessage)">
+		    	<span id="errorAddress"></span>
 
                 <label for="metodoPagamento">Metodo di pagamento:</label>
-                <select 
-                    id="metodoPagamento" 
-                    name="metodoPagamento" 
-                    required>
+                <select id="metodoPagamento" name="metodoPagamento" required>
 
                     <option value="">Seleziona metodo di pagamento</option>
                     <option value="Carta">Carta</option>
@@ -110,6 +104,56 @@
                     <option value="Contrassegno">Contrassegno</option>
 
                 </select>
+                
+                <div id="datiCarta">
+
+        <h3>Dati della carta</h3>
+
+
+        <label for="intestatarioCarta">
+            Intestatario della carta:
+        </label>
+
+        <input type="text" id="intestatarioCarta" name="intestatarioCarta" placeholder="Nome e cognome"required 
+            	onchange="validateFormElem(this, nameOrLastnamePattern, document.getElementById('errorName'), nameErrorMessage )">            
+			<span id="errorName"></span><br>
+
+
+        <label for="numeroCarta">
+            Numero della carta:
+        </label>
+
+        <input type="text" id="numeroCarta" name="numeroCarta" placeholder="1234 5678 9012 3456" maxlength="19"required 
+            	onchange="validateFormElem(this, cardNumberPattern, document.getElementById('errorNum'), cardNumberMessage)">            
+		<span id="errorNum"></span><br>
+        
+        <div class="card-row">
+
+            <div class="card-field">
+
+                <label for="scadenzaCarta">
+                    Scadenza:
+                </label>
+
+                <input type="month" id="scadenzaCarta" name="scadenzaCarta">
+
+            </div>
+
+
+            <div class="card-field">
+
+                <label for="cvv">
+                    CVV:
+                </label>
+
+                <input type="password" id="cvv" name="cvv" placeholder="123" maxlength="4">
+
+            </div>
+
+        </div>
+
+    </div>
+                
 
                 <button type="submit">
                     Conferma ordine

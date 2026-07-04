@@ -15,6 +15,14 @@ document.addEventListener("DOMContentLoaded", function() {
             event.preventDefault();
             confermaOrdine();
         });
+		
+		var metodoPagamento =document.getElementById("metodoPagamento");
+
+
+		metodoPagamento.addEventListener("change",gestisciDatiCarta);
+
+        gestisciDatiCarta();
+		
     }
 });
 
@@ -128,16 +136,13 @@ function rimuoviProdotto(codice, taglia) {
 
 function svuotaCarrello() {
 
-    var conferma = confirm("Sei sicuro di voler svuotare il carrello?");
 
-    if (!conferma) {
-        return;
-    }
+	    var params = "azione=clear";
 
-    var params = "azione=clear";
+	    inviaRichiestaCarrello(params,callbackAggiornamento);
+	}
 
-    inviaRichiestaCarrello(params, callbackAggiornamento);
-}
+    
 
 
 function inviaRichiestaCarrello(params, callback) {
@@ -202,14 +207,26 @@ function confermaOrdine() {
     var params =
         "indirizzoSpedizione=" + encodeURIComponent(indirizzo) +
         "&metodoPagamento=" + encodeURIComponent(pagamento);
+		
+		if (pagamento != "Contrassegno") {
+
+		    var intestatario = document.getElementById("intestatarioCarta").value;
+
+		    var numeroCarta = document.getElementById("numeroCarta").value;
+
+		    var scadenzaCarta = document.getElementById("scadenzaCarta").value;
+
+		    var cvv = document.getElementById("cvv").value;
+
+
+		    params += "&intestatarioCarta=" + encodeURIComponent(intestatario) + "&numeroCarta=" + encodeURIComponent(numeroCarta) + "&scadenzaCarta=" + encodeURIComponent(scadenzaCarta) + "&cvv=" + encodeURIComponent(cvv);
+		}
 
     var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function() {
 
-        if (xhr.readyState == 4) {
-
-            if (xhr.status == 200) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
 
                 var risposta = JSON.parse(xhr.responseText);
 
@@ -220,7 +237,6 @@ function confermaOrdine() {
                     caricaCarrello();
 
                     document.getElementById("formOrdine").reset();
-                }
 
             } else {
 
@@ -233,14 +249,49 @@ function confermaOrdine() {
 
     xhr.open("POST", contextPath + "/ConfermaOrdine", true);
 
-    xhr.setRequestHeader(
-        "Content-Type",
-        "application/x-www-form-urlencoded"
-    );
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 
     xhr.setRequestHeader("Connection", "close");
 
     xhr.send(params);
+}
+
+function gestisciDatiCarta() {
+
+    var metodoPagamento =document.getElementById("metodoPagamento");
+
+    var datiCarta = document.getElementById("datiCarta");
+
+
+    var intestatarioCarta =document.getElementById("intestatarioCarta");
+
+    var numeroCarta =document.getElementById("numeroCarta");
+
+    var scadenzaCarta = document.getElementById("scadenzaCarta");
+
+    var cvv = document.getElementById("cvv");
+
+
+    if (metodoPagamento.value != "" && metodoPagamento.value != "Contrassegno"){
+
+        datiCarta.style.display = "block";
+
+
+        intestatarioCarta.required = true;
+        numeroCarta.required = true;
+        scadenzaCarta.required = true;
+        cvv.required = true;
+
+    } else {
+
+        datiCarta.style.display = "none";
+
+
+        intestatarioCarta.required = false;
+        numeroCarta.required = false;
+        scadenzaCarta.required = false;
+        cvv.required = false;
+    }
 }
 
 
