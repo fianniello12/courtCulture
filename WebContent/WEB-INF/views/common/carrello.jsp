@@ -4,9 +4,13 @@
 <%
     String contextPath = request.getContextPath();
     boolean isLogged = session.getAttribute("email") != null;
-    boolean isAdmin = session.getAttribute("role") != null 
-            && session.getAttribute("role").equals("admin");
+    boolean isAdmin = session.getAttribute("role") != null && session.getAttribute("role").equals("admin");
+    List<OrdineBean> ordini =(List<OrdineBean>) request.getAttribute("ordini");
+    
 %>
+
+<%@ page import="java.util.List" %>
+<%@ page import="it.unisa.courtCulture.model.OrdineBean" %>
 
 <!DOCTYPE html>
 <html>
@@ -98,9 +102,9 @@
                 <label for="metodoPagamento">Metodo di pagamento:</label>
                 <select id="metodoPagamento" name="metodoPagamento" required>
 
-                    <option value="Carta" <%if(session.getAttribute("metodoPagamento")=="Carta di credito"){%> selected <%} %>>Carta di credito</option>
-                    <option value="PayPal"<%if(session.getAttribute("metodoPagamento")=="PayPal"){%> selected <%} %>>PayPal</option>
-                    <option value="Contrassegno"<%if(session.getAttribute("metodoPagamento")=="Contrassegno"){%> selected <%} %>>Contrassegno</option>
+                    <option value="Carta" <%if(session.getAttribute("metodoPagamento").equals("Carta di credito")){%> selected <%} %>>Carta di credito</option>
+                    <option value="PayPal"<%if(session.getAttribute("metodoPagamento").equals("PayPal")){%> selected <%} %>>PayPal</option>
+                    <option value="Contrassegno"<%if(session.getAttribute("metodoPagamento").equals("Contrassegno")){%> selected <%} %>>Contrassegno</option>
 
                 </select>
                 
@@ -172,10 +176,53 @@
                     Accedi
                 </a>
             </div>
-
-        <% } %>
-
+	
+	<% } %>
     </section>
+
+
+<% if (isLogged) { %>
+
+	<section class="orders-history">
+
+    <h2>I tuoi ordini</h2>
+
+    <% if (ordini == null || ordini.isEmpty()) { %>
+
+        <p>Non hai ancora effettuato nessun ordine.</p>
+
+    <% } else { %>
+
+        <div class="orders-container">
+
+            <% for (OrdineBean ordine : ordini) { %>
+
+                <div class="order-card">
+
+                    <h3>Ordine #<%= ordine.getIdOrdine() %></h3>
+
+                    <p><span class="description">Data:</span> <%= ordine.getDataOrdine() %></p>
+
+                    <p><span class="description">Totale:</span> € <%= String.format("%.2f",ordine.getTotaleOrdine()) %></p>
+
+                    <p><span class="description">Indirizzo:</span> <%= ordine.getIndirizzoSpedizione() %></p>
+
+                    <p><span class="description">Pagamento:</span> <%= ordine.getMetodoPagamento() %></p>
+
+                    <p><span class="description">Stato:</span> <%= ordine.getStatoOrdine() %></p>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    <% } %>
+
+</section>
+
+<% } %>
+
 
 </main>
 

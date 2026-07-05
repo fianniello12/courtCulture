@@ -14,8 +14,11 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import it.unisa.courtCulture.dao.OrdineDao;
+import it.unisa.courtCulture.dao.OrdineDaoImpl;
 import it.unisa.courtCulture.dao.ProdottoDaoImpl;
 import it.unisa.courtCulture.model.CarrelloItemBean;
+import it.unisa.courtCulture.model.OrdineBean;
 import it.unisa.courtCulture.model.ProdottoBean;
 
 /**
@@ -25,6 +28,7 @@ import it.unisa.courtCulture.model.ProdottoBean;
 public class Carrello extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProdottoDaoImpl prodottoDao;
+	private OrdineDaoImpl ordineDao;
 
     @Override
     public void init() throws ServletException {
@@ -35,6 +39,7 @@ public class Carrello extends HttpServlet {
         }
 
         prodottoDao = new ProdottoDaoImpl(ds);
+        ordineDao = new OrdineDaoImpl(ds);
     }
 
     
@@ -54,8 +59,22 @@ public class Carrello extends HttpServlet {
             inviaCarrelloJson(request, response);
             return;
         }
+        
+        Integer idUtente =(Integer) request.getSession().getAttribute("idUtente");
+        if(idUtente== null) {
+        	request.getRequestDispatcher("/WEB-INF/views/common/carrello.jsp").forward(request, response);
+        }
+
+        try {
+        List<OrdineBean> ordini = ordineDao.doRetrieveByUtente(idUtente);
+
+        request.setAttribute("ordini", ordini);
 
         request.getRequestDispatcher("/WEB-INF/views/common/carrello.jsp").forward(request, response);
+        
+        }catch(SQLException e) {
+        	throw new ServletException(e);
+        }
     }
 
 	/**

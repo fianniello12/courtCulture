@@ -504,6 +504,46 @@ body {
     }
 }
 
+.orders-history {
+    width: 100%;
+    padding: 5px 60px;
+    box-sizing: border-box;
+}
+
+.orders-history h2 {
+    font-size: 46px;
+    margin-bottom: 5px;
+    color: #F5F916;
+}
+
+.orders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.order-card h3 {
+    margin: 5px 0 20px 0;
+    font-size: 35px;
+    color: #003488;
+}
+
+.order-card p {
+    margin: 5px 5px;
+    
+}
+
+.description{
+	font-weight: bold;
+	color: #F5F916;
+}
+
 .footerLogo {
     display: flex;
     justify-content: center;
