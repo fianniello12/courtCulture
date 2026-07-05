@@ -111,7 +111,6 @@ body {
     background-size: cover;
     background-position: center;
     
-    
 }
 
 
@@ -149,7 +148,7 @@ body {
     padding: 40px;
 
     border-radius: 20px;
-    border: 1px solid rgba(245, 249, 22, 0.4);
+    border: 1px solid rgba(245, 249, 22, 0.4); 
 
     display: flex;
     flex-direction: column;
@@ -305,4 +304,217 @@ body {
 	background-image: url("../images/nocta3.jpg");
     background-size: cover;
     background-position: center;
+}
+
+.admin-orders-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    width: 100%;
+    padding: 40px 60px;
+    box-sizing: border-box;
+    
+    background-image: url("../images/anthonyEdwards.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+
+.admin-orders-section h2 {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 20px;
+    
+    color: #F5F916;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+
+.admin-orders-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    width: 100%;
+    max-width: 350px;
+
+    background-color: black;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+
+    padding: 40px;
+
+    border-radius: 20px;
+    border: 1px solid rgba(245, 249, 22, 0.4);
+}
+
+.admin-orders-section button {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: #F5F916;
+    color: black;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.admin-orders-section button:hover {
+    transform: translateY(-3px);
+    opacity: 0.85;
+}
+
+
+.orders-results {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: 30px;
+}
+
+
+.orders-results table {
+	width: 80%;
+    max-width: 1100px;
+    
+
+	margin: 0 auto;
+    border-collapse: collapse;
+    border: none;
+    
+
+    background-color: black;
+
+    border-radius: 18px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+}
+
+.admin-orders-section thead {
+    background-color: #F5F916;
+    color: #003488;
+}
+
+.admin-orders-section th {
+    padding: 16px;
+
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+.admin-orders-section td {
+    padding: 15px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    font-size: 15px;
+}
+
+.admin-orders-section tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.admin-orders-section tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.admin-utenti-section {
+    min-height: 50vh;
+
+    padding: 50px 60px 80px 60px;
+
+    background-color: #000;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    background-image: url("../images/mj.jpg");
+    background-size: cover;
+    background-position: center;
+    
+    
+}
+
+.admin-utenti-section h2 {
+    margin: 5px 30px;
+
+    font-size: 34px;
+    color: #F5F916;
+
+	text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.admin-utenti-section table {
+    width: 100%;
+    max-width: 1100px;
+
+	margin: 35px;
+	margin-bottom: 5px;
+    border-collapse: collapse;
+    border: none;
+
+    background-color: black;
+
+    border-radius: 18px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+}
+
+.admin-utenti-section thead {
+    background-color: #F5F916;
+    color: #003488;
+}
+
+.admin-utenti-section th {
+    padding: 16px;
+
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+.admin-utenti-section td {
+    padding: 15px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    font-size: 15px;
+}
+
+.admin-utenti-section tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.admin-utenti-section tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
 }

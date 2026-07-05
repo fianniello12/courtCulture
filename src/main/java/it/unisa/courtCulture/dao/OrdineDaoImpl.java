@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -149,6 +150,35 @@ public class OrdineDaoImpl implements OrdineDao {
                 while (rs.next()) {
                     OrdineBean ordine = extractOrdine(rs);
                     ordini.add(ordine);
+                }
+            }
+        }
+
+        return ordini;
+    }
+    
+    public synchronized List<OrdineBean> doRetrieveByPeriodo(LocalDate dataDa,LocalDate dataA)throws SQLException {
+
+        String sql ="SELECT * FROM ordine WHERE data_ordine >= ? AND data_ordine < ? ORDER BY data_ordine DESC";
+
+
+        List<OrdineBean> ordini = new LinkedList<>();
+
+
+        try (
+            Connection connection = ds.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql)
+        ) {
+
+            ps.setTimestamp(1,Timestamp.valueOf(dataDa.atStartOfDay()));
+
+            ps.setTimestamp(2,Timestamp.valueOf(dataA.plusDays(1).atStartOfDay()));
+
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                while (rs.next()) {
+                    ordini.add(extractOrdine(rs));
                 }
             }
         }

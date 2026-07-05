@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Collection" %>
 <%@ page import="it.unisa.courtCulture.model.ProdottoBean" %>
+<%@ page import="java.util.List" %>
+<%@ page import="it.unisa.courtCulture.model.OrdineBean" %>
+<%@ page import="it.unisa.courtCulture.model.UtenteBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +17,10 @@
 
 <%
 String contextPath = request.getContextPath();
-Collection<ProdottoBean> prodotti = (Collection<ProdottoBean>) request.getAttribute("prodotti");
+List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getAttribute("prodotti");
+List<OrdineBean> ordini =(List<OrdineBean>) request.getAttribute("ordini");
+List<UtenteBean> utenti =(List<UtenteBean>) request.getAttribute("utenti");
+
 %>
 
 
@@ -174,6 +180,181 @@ Collection<ProdottoBean> prodotti = (Collection<ProdottoBean>) request.getAttrib
 			<input type="hidden" name="codice" value="<%= prodotto.getCodice() %>">
 			<button type="submit">Elimina</button>
 		</form>
+   </tr>
+
+   <% } %>
+            </tbody>
+        </table>
+
+    <% } %>
+
+</section>
+
+<section id="table-orders" class="admin-orders-section">
+
+    <h2>Gestione ordini</h2>
+
+    <form action="FiltraOrdini" method="get">
+
+		<p>Visualizza gli ordini in base alla data d'acquisto</p>
+
+        <input type="hidden" name="filtro" value="tutti">
+
+        <button type="submit">Mostra tutti gli ordini</button>
+
+    </form>
+
+    <form action="FiltraOrdini" method="get">
+
+        <input type="hidden" name="filtro" value="periodo">
+
+        <label for="dataDa">Dalla data:</label>
+
+        <input type="date" id="dataDa" name="dataDa" required>
+
+        <label for="dataA">Alla data:</label>
+
+        <input type="date" id="dataA" name="dataA" required>
+
+        <button type="submit">Cerca per periodo</button>
+
+    </form>
+
+
+    <form action="FiltraOrdini" method="get">
+
+        <input type="hidden" name="filtro" value="cliente">
+
+        <label for="idCliente">Id cliente:</label>
+
+        <input type="text" id="idCliente" name="idCliente" required>
+
+        <button type="submit">Cerca ordini cliente</button>
+
+    </form>
+
+
+    <div class="orders-results">
+
+        <% if (ordini == null) { %>
+
+            <p>Seleziona un filtro per visualizzare gli ordini.</p>
+
+        <% } else if (ordini.isEmpty()) { %>
+
+            <p>Nessun ordine trovato.</p>
+
+        <% } else { %>
+
+            <table border="1">
+
+                <thead>
+
+                    <tr>
+                        <th>ID ordine</th>
+                        <th>ID cliente</th>
+                        <th>Data</th>
+                        <th>Totale</th>
+                        <th>Indirizzo</th>
+                        <th>Pagamento</th>
+                        <th>Stato</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <% for (OrdineBean ordine : ordini) { %>
+
+                        <tr>
+
+                            <td><%= ordine.getIdOrdine() %></td>
+
+                            <td><%= ordine.getIdUtente() %></td>
+
+                            <td><%= ordine.getDataOrdine() %></td>
+
+                            <td>€ <%= String.format("%.2f",ordine.getTotaleOrdine()) %></td>
+
+                            <td><%= ordine.getIndirizzoSpedizione() %></td>
+
+                            <td><%= ordine.getMetodoPagamento() %></td>
+
+                            <td><%= ordine.getStatoOrdine() %></td>
+
+                        </tr>
+
+                    <% } %>
+
+                </tbody>
+
+            </table>
+
+        <% } %>
+
+    </div>
+
+</section>
+
+<section id="table-utenti"class="admin-utenti-section">
+
+    <h2>Gestione clienti</h2>
+
+    <% if (utenti == null || utenti.isEmpty()) { %>
+
+        <p>Nessun cliente registrato.</p>
+
+    <% } else { %>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Indirizzo</th>
+                    <th>Metodo di pagamento</th>
+                    <th>ruolo</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% for (UtenteBean utente: utenti) { %>
+
+
+<tr>
+
+		<td>
+			<%= utente.getEmail() %>
+		</td>
+
+		<td>
+			<%= utente.getId() %>
+		</td>
+
+        <td>
+        	<%= utente.getNome() %>
+		</td>
+
+		<td>
+			<%= utente.getCognome() %>
+		</td>
+
+		<td>
+			<%= utente.getIndirizzoSpedizione() %>
+		</td>
+
+		<td>
+			<%= utente.getMetodoPagamento() %>
+		</td>
+
+		<td>
+			<%= utente.getRuolo() %>
+		</td>
+
+		
    </tr>
 
    <% } %>
