@@ -10,6 +10,8 @@ public class OrdineBean implements Serializable{
 	private int idUtente;
 	private String dataOrdine;
 	private String statoOrdine;
+	private String indirizzoSpedizione;
+	private String metodoPagamento;
 	private float totaleOrdine;
 	
 	public OrdineBean() {
@@ -47,7 +49,22 @@ public class OrdineBean implements Serializable{
 	public void setStatoOrdine(String statoOrdine) {
 		this.statoOrdine = statoOrdine;
 	}
+	
+	public String getIndirizzoSpedizione() {
+		return indirizzoSpedizione;
+	}
 
+	public void setIndirizzoSpedizione(String indirizzoSpedizione) {
+		this.indirizzoSpedizione = indirizzoSpedizione;
+	}
+
+	public String getMetodoPagamento() {
+		return metodoPagamento;
+	}
+
+	public void setMetodoPagamento(String metodoPagamento) {
+		this.metodoPagamento = metodoPagamento;
+	}
 	public float getTotaleOrdine() {
 		return totaleOrdine;
 	}
@@ -55,6 +72,8 @@ public class OrdineBean implements Serializable{
 	public void setTotaleOrdine(float totaleOrdine) {
 		this.totaleOrdine = totaleOrdine;
 	}
+
+	
 	
 	
 

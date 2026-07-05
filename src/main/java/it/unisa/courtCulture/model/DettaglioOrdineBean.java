@@ -7,6 +7,7 @@ public class DettaglioOrdineBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int idOrdine;
 	private int codiceProdotto;
+	private int taglia;
 	private int quantita;
 	private float prezzoAcquisto;
 	
@@ -40,7 +41,15 @@ public class DettaglioOrdineBean implements Serializable{
 		this.codiceProdotto = codiceProdotto;
 	}
 
+	public int getTaglia() {
+		return taglia;
+	}
 
+
+
+	public void setTaglia(int taglia) {
+		this.taglia = taglia;
+	}
 
 	public int getQuantita() {
 		return quantita;
@@ -64,9 +73,6 @@ public class DettaglioOrdineBean implements Serializable{
 		this.prezzoAcquisto = prezzoAcquisto;
 	}
 
-	
-	
-	
 	
 }
 	

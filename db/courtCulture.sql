@@ -47,18 +47,25 @@ CREATE TABLE ordine (
 );
 
 CREATE TABLE dettaglio_ordine (
-	id_ordine INT NOT NULL,
-	codice_prodotto INT NOT NULL,
-	quantita INT DEFAULT 1,
-	prezzo_acquisto DECIMAL(10,2) NOT NULL,
+    id_ordine INT NOT NULL,
+    codice_prodotto INT NOT NULL,
+    taglia INT NOT NULL,
+    quantita INT DEFAULT 1,
+    prezzo_acquisto DECIMAL(10,2) NOT NULL,
 
-	PRIMARY KEY (id_ordine, codice_prodotto),
+    PRIMARY KEY (
+        id_ordine,
+        codice_prodotto,
+        taglia
+    ),
 
-	FOREIGN KEY (id_ordine) REFERENCES ordine(id_ordine)
-		ON UPDATE CASCADE
-		ON DELETE RESTRICT,
+    FOREIGN KEY (id_ordine)
+        REFERENCES ordine(id_ordine)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
 
-	FOREIGN KEY (codice_prodotto) REFERENCES prodotto(codice)
-		ON UPDATE CASCADE
-		ON DELETE RESTRICT
+    FOREIGN KEY (codice_prodotto)
+        REFERENCES prodotto(codice)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
 );

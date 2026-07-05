@@ -22,21 +22,22 @@ public class DettaglioOrdineDaoImpl implements DettaglioOrdineDao {
 
     public synchronized void doSave(DettaglioOrdineBean dettaglio) throws SQLException {
         String insertSQL = "INSERT INTO " + TABLE_NAME
-                + " (id_ordine, codice_prodotto, quantita, prezzo_acquisto) VALUES (?, ?, ?, ?)";
+                + " (id_ordine, codice_prodotto, taglia, quantita, prezzo_acquisto) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = ds.getConnection();
              PreparedStatement ps = connection.prepareStatement(insertSQL)) {
 
             ps.setInt(1, dettaglio.getIdOrdine());
             ps.setInt(2, dettaglio.getCodiceProdotto());
+            ps.setInt(3, dettaglio.getTaglia());
 
             if (dettaglio.getQuantita() > 0) {
-                ps.setInt(3, dettaglio.getQuantita());
+                ps.setInt(4, dettaglio.getQuantita());
             } else {
-                ps.setInt(3, 1);
+                ps.setInt(4, 1);
             }
 
-            ps.setFloat(4, dettaglio.getPrezzoAcquisto());
+            ps.setFloat(5, dettaglio.getPrezzoAcquisto());
 
             ps.executeUpdate();
         }
@@ -44,7 +45,7 @@ public class DettaglioOrdineDaoImpl implements DettaglioOrdineDao {
 
     public synchronized boolean doUpdate(DettaglioOrdineBean dettaglio) throws SQLException {
         String updateSQL = "UPDATE " + TABLE_NAME
-                + " SET quantita = ?, prezzo_acquisto = ? WHERE id_ordine = ? AND codice_prodotto = ?";
+                + " SET quantita = ?, prezzo_acquisto = ? WHERE id_ordine = ? AND codice_prodotto = ? AND taglia=?";
 
         try (Connection connection = ds.getConnection();
              PreparedStatement ps = connection.prepareStatement(updateSQL)) {
@@ -53,36 +54,38 @@ public class DettaglioOrdineDaoImpl implements DettaglioOrdineDao {
             ps.setFloat(2, dettaglio.getPrezzoAcquisto());
             ps.setInt(3, dettaglio.getIdOrdine());
             ps.setInt(4, dettaglio.getCodiceProdotto());
+            ps.setInt(5, dettaglio.getTaglia());
 
             int rowsUpdated = ps.executeUpdate();
             return rowsUpdated != 0;
         }
     }
 
-    public synchronized boolean doDelete(int idOrdine, int codiceProdotto) throws SQLException {
-        String deleteSQL = "DELETE FROM " + TABLE_NAME
-                + " WHERE id_ordine = ? AND codice_prodotto = ?";
+    public synchronized boolean doDelete(int idOrdine, int codiceProdotto, int taglia) throws SQLException {
+        String deleteSQL = "DELETE FROM " + TABLE_NAME+ " WHERE id_ordine = ? AND codice_prodotto = ? AND taglia=?";
 
         try (Connection connection = ds.getConnection();
              PreparedStatement ps = connection.prepareStatement(deleteSQL)) {
 
             ps.setInt(1, idOrdine);
             ps.setInt(2, codiceProdotto);
+            ps.setInt(3, taglia);
 
             int result = ps.executeUpdate();
             return result != 0;
         }
     }
 
-    public synchronized DettaglioOrdineBean doRetrieveByKey(int idOrdine, int codiceProdotto) throws SQLException {
+    public synchronized DettaglioOrdineBean doRetrieveByKey(int idOrdine, int codiceProdotto,int taglia) throws SQLException {
         String selectSQL = "SELECT * FROM " + TABLE_NAME
-                + " WHERE id_ordine = ? AND codice_prodotto = ?";
+                + " WHERE id_ordine = ? AND codice_prodotto = ? AND taglia=?";
 
         try (Connection connection = ds.getConnection();
              PreparedStatement ps = connection.prepareStatement(selectSQL)) {
 
             ps.setInt(1, idOrdine);
             ps.setInt(2, codiceProdotto);
+            ps.setInt(3, taglia);
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -145,7 +148,8 @@ public class DettaglioOrdineDaoImpl implements DettaglioOrdineDao {
             if (order.equals("id_ordine")
                     || order.equals("codice_prodotto")
                     || order.equals("quantita")
-                    || order.equals("prezzo_acquisto")) {
+                    || order.equals("prezzo_acquisto")
+            		|| order.equals("taglia")){
 
                 selectSQL += " ORDER BY " + order;
             }
@@ -169,6 +173,7 @@ public class DettaglioOrdineDaoImpl implements DettaglioOrdineDao {
 
         dettaglio.setIdOrdine(rs.getInt("id_ordine"));
         dettaglio.setCodiceProdotto(rs.getInt("codice_prodotto"));
+        dettaglio.setTaglia(rs.getInt("taglia"));
         dettaglio.setQuantita(rs.getInt("quantita"));
         dettaglio.setPrezzoAcquisto(rs.getFloat("prezzo_acquisto"));
 

@@ -11,9 +11,9 @@ public interface DettaglioOrdineDao {
 
     public boolean doUpdate(DettaglioOrdineBean dettaglio) throws SQLException;
 
-    public boolean doDelete(int idOrdine, int codiceProdotto) throws SQLException;
+    public boolean doDelete(int idOrdine, int codiceProdotto, int taglia) throws SQLException;
 
-    public DettaglioOrdineBean doRetrieveByKey(int idOrdine, int codiceProdotto) throws SQLException;
+    public DettaglioOrdineBean doRetrieveByKey(int idOrdine, int codiceProdotto, int taglia) throws SQLException;
 
     public List<DettaglioOrdineBean> doRetrieveByOrdine(int idOrdine) throws SQLException;
 
