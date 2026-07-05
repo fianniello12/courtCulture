@@ -327,11 +327,11 @@ List<UtenteBean> utenti =(List<UtenteBean>) request.getAttribute("utenti");
 <tr>
 
 		<td>
-			<%= utente.getEmail() %>
+			<%= utente.getId() %>
 		</td>
 
 		<td>
-			<%= utente.getId() %>
+			<%= utente.getEmail() %>
 		</td>
 
         <td>
