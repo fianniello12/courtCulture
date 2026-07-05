@@ -56,15 +56,14 @@
                 </li>
             <% } %>
 
-            <li id="navCarrello">
-                <a href="Carrello">carrello</a>
-            </li>
 
         </ul>
     </nav>
 </header>
 
 <main class="cart-page">
+
+	<div class="cart-left">
 
     <section class="cart-section">
 
@@ -85,6 +84,8 @@
         <p id="messaggio"></p>
 
     </section>
+    
+    </div>
 
     <section class="order-section">
 
@@ -179,9 +180,10 @@
 	
 	<% } %>
     </section>
+    
+	<% if (isLogged) { %>
+	<div class="cart-left">
 
-
-<% if (isLogged) { %>
 
 	<section class="orders-history">
 
@@ -221,7 +223,9 @@
 
 </section>
 
-<% } %>
+	</div>>
+
+	<% } %>
 
 
 </main>
@@ -257,8 +261,7 @@
             <% } %>
 
             |
-            <a href="Shop">Shop</a> |
-            <a href="Carrello">Carrello</a>
+            <a href="Shop">Shop</a> 
         </p>
     </div>
 

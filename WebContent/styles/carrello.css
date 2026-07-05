@@ -505,14 +505,17 @@ body {
 }
 
 .orders-history {
+    grid-column: 1 / -1;
+
     width: 100%;
     padding: 5px 60px;
     box-sizing: border-box;
 }
 
+
 .orders-history h2 {
     font-size: 46px;
-    margin-bottom: 5px;
+    margin: 0 0 5px 0;
     color: #F5F916;
 }
 
@@ -542,6 +545,12 @@ body {
 .description{
 	font-weight: bold;
 	color: #F5F916;
+}
+
+.cart-left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .footerLogo {
