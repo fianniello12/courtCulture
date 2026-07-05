@@ -4,6 +4,7 @@ const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 const loginPasswordPattern = /^.{1,}$/;
 const addressPattern = /^(?=.*[0-9])[A-Za-zÀ-ÿ0-9\s,.()'’\/-]{5,100}$/;
 const cardNumberPattern = /^(?:\d\s*){16}$/;
+const cvvPattern = /^\d{3}$/;
 
 const nameErrorMessage = "Il nome deve contenere solo lettere";
 const lastnameErrorMessage = "Il cognome deve contenere solo lettere";
@@ -12,6 +13,8 @@ const passwordErrorMessage = "La password deve contenere almeno 8 caratteri, una
 const loginPasswordErrorMessage = "La password non deve essere vuota";
 const addressErrorMessage = "L'indirizzo deve contenere almeno il numero civico ed essere valido";
 const cardNumberMessage = "Il numero della carta di credito deve contenere essattamente 16 numeri";
+const cvvMessage="Inserire un CVV valido"
+
 
 function validateRegistrazione() {
     let valid = true;
@@ -39,6 +42,10 @@ function validateRegistrazione() {
 
 	if (!validateFormElem(form.num, cardNumberPattern, document.getElementById("errorNum"), cardNumberMessage)) {
 	        valid = false;
+	    }
+		
+	if (!validateFormElem(form.cvv, cvvPattern, document.getElementById("errorCvv"), cvvMessage)) {
+			valid = false;
 	    }
 	
     return valid;

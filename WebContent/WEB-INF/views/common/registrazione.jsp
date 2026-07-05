@@ -39,7 +39,7 @@
 
         <div class="input-container">
             <label for="indirizzo_spedizione" class="input-label">Indirizzo di spedizione:</label>
-    		<input type="text" name="indirizzo_spedizione" id="indirizzo_spedizione" required
+    		<input type="text" name="indirizzo_spedizione" id="indirizzo_spedizione" placeholder="via, n.Civico Città" required
     			onchange="validateFormElem(this, addressPattern, document.getElementById('errorAddress'), addressErrorMessage)">
 		    <span id="errorAddress"></span>
         </div>

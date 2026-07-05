@@ -81,6 +81,9 @@ public class Login extends HttpServlet {
 			request.getSession().setAttribute("email", utente.getEmail());
             request.getSession().setAttribute("idUtente", utente.getId());
             request.getSession().setAttribute("role", utente.getRuolo());
+            request.getSession().setAttribute("indirizzo_spedizione", utente.getIndirizzoSpedizione());
+            request.getSession().setAttribute("role", utente.getRuolo());
+            request.getSession().setAttribute("metodoPagamento", utente.getMetodoPagamento());
 
             if ("admin".equalsIgnoreCase(utente.getRuolo())) {
                 response.sendRedirect(request.getContextPath() + "/WelcomeAdmin");

@@ -91,17 +91,16 @@
             <form action="ConfermaOrdine" method="post" id="formOrdine">
 
                 <label for="indirizzoSpedizione">Indirizzo di spedizione:</label>
-                <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" placeholder="Inserisci indirizzo completo" required
+                <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" placeholder="via, n.Civico Città" value="<%= session.getAttribute("indirizzo_spedizione") %>" required
     			onchange="validateFormElem(this, addressPattern, document.getElementById('errorAddress'), addressErrorMessage)">
 		    	<span id="errorAddress"></span>
 
                 <label for="metodoPagamento">Metodo di pagamento:</label>
                 <select id="metodoPagamento" name="metodoPagamento" required>
 
-                    <option value="">Seleziona metodo di pagamento</option>
-                    <option value="Carta">Carta</option>
-                    <option value="PayPal">PayPal</option>
-                    <option value="Contrassegno">Contrassegno</option>
+                    <option value="Carta" <%if(session.getAttribute("metodoPagamento")=="Carta di credito"){%> selected <%} %>>Carta di credito</option>
+                    <option value="PayPal"<%if(session.getAttribute("metodoPagamento")=="PayPal"){%> selected <%} %>>PayPal</option>
+                    <option value="Contrassegno"<%if(session.getAttribute("metodoPagamento")=="Contrassegno"){%> selected <%} %>>Contrassegno</option>
 
                 </select>
                 
@@ -146,7 +145,9 @@
                     CVV:
                 </label>
 
-                <input type="password" id="cvv" name="cvv" placeholder="123" maxlength="4">
+                <input type="password" id="cvv" name="cvv" placeholder="123" maxlength="3" required 
+            	onchange="validateFormElem(this, cvvPattern, document.getElementById('errorCvv'), cvvMessage)">
+            	<span id="errorCvv"></span>
 
             </div>
 
