@@ -83,24 +83,18 @@ public class ConfermaOrdine extends HttpServlet {
 
         
 
-        HttpSession session =
-                request.getSession(false);
+        HttpSession session =request.getSession(false);
 
 
         if (session == null) {
 
-            scriviJson(
-                    response,
-                    false,
-                    "Devi effettuare il login per confermare l'ordine"
-            );
+            scriviJson(response,false,"Devi effettuare il login per confermare l'ordine");
 
             return;
         }
 
 
-        Object idUtenteObject =
-                session.getAttribute("idUtente");
+        Object idUtenteObject =session.getAttribute("idUtente");
 
 
         if (idUtenteObject == null) {
@@ -284,10 +278,10 @@ public class ConfermaOrdine extends HttpServlet {
             session.removeAttribute("carrello");
 
 
-           
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
 
-            response.getWriter().write("{"+ "\"success\":true,"+ "\"message\":\"Ordine confermato con successo\","+ "\"idOrdine\":" + idOrdine+ "}");
-
+            response.getWriter().write("{\"success\": true}");
 
         } catch (SQLException e) {
 

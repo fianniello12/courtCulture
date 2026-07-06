@@ -196,12 +196,13 @@
     <% } else { %>
 
         <div class="orders-container">
-
+			
+			<%int i=0; %>
             <% for (OrdineBean ordine : ordini) { %>
-
+				<%i++; %>
                 <div class="order-card">
 
-                    <h3>Ordine #<%= ordine.getIdOrdine() %></h3>
+                    <h3>Ordine #<%= (ordini.size()-i)+1%></h3>
 
                     <p><span class="description">Data:</span> <%= ordine.getDataOrdine() %></p>
 

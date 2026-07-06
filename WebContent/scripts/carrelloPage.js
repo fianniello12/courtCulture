@@ -166,12 +166,7 @@ function inviaRichiestaCarrello(params, callback) {
 
     xhr.open("POST", contextPath + "/Carrello", true);
 
-    xhr.setRequestHeader(
-        "Content-Type",
-        "application/x-www-form-urlencoded"
-    );
-
-    xhr.setRequestHeader("Connection", "close");
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 
     xhr.send(params);
 }
@@ -204,9 +199,7 @@ function confermaOrdine() {
         return;
     }
 
-    var params =
-        "indirizzoSpedizione=" + encodeURIComponent(indirizzo) +
-        "&metodoPagamento=" + encodeURIComponent(pagamento);
+    var params ="indirizzoSpedizione=" + encodeURIComponent(indirizzo) +"&metodoPagamento=" + encodeURIComponent(pagamento);
 		
 		if (pagamento != "Contrassegno") {
 
@@ -234,15 +227,11 @@ function confermaOrdine() {
 
                 if (risposta.success) {
 
-                    caricaCarrello();
-
-                    document.getElementById("formOrdine").reset();
+                    window.location.href = contextPath + "/Carrello";
 
             } else {
 
-                mostraMessaggio(
-                    "Errore nella conferma dell'ordine: " + xhr.statusText
-                );
+                mostraMessaggio("Errore nella conferma dell'ordine: " + xhr.statusText);
             }
         }
     };
@@ -250,8 +239,6 @@ function confermaOrdine() {
     xhr.open("POST", contextPath + "/ConfermaOrdine", true);
 
     xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-
-    xhr.setRequestHeader("Connection", "close");
 
     xhr.send(params);
 }
