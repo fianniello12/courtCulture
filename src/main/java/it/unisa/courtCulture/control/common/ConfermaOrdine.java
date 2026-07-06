@@ -38,26 +38,20 @@ public class ConfermaOrdine extends HttpServlet {
     public void init() throws ServletException {
 
         DataSource ds =
-                (DataSource) getServletContext()
-                .getAttribute("DataSource");
+                (DataSource) getServletContext().getAttribute("DataSource");
 
 
         if (ds == null) {
 
-            throw new ServletException(
-                    "DataSource non disponibile"
-            );
+            throw new ServletException("DataSource non disponibile");
         }
 
 
-        ordineDao =
-                new OrdineDaoImpl(ds);
+        ordineDao =new OrdineDaoImpl(ds);
 
-        dettaglioOrdineDao =
-                new DettaglioOrdineDaoImpl(ds);
+        dettaglioOrdineDao =new DettaglioOrdineDaoImpl(ds);
 
-        prodottoDao =
-                new ProdottoDaoImpl(ds);
+        prodottoDao =new ProdottoDaoImpl(ds);
     }
     
     public ConfermaOrdine() {

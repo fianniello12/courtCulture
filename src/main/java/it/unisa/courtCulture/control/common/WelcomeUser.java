@@ -27,7 +27,7 @@ public class WelcomeUser extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/views/common/home.jsp");
+		RequestDispatcher dispatcher= request.getRequestDispatcher(request.getContextPath() + "/Home");
 		dispatcher.forward(request, response);
 	}
 

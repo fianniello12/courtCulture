@@ -38,8 +38,7 @@ public class Shop extends HttpServlet {
 
 	            request.setAttribute("prodotti", prodotti);
 
-	            request.getRequestDispatcher("/WEB-INF/views/common/shop.jsp")
-	                   .forward(request, response);
+	            request.getRequestDispatcher("/WEB-INF/views/common/shop.jsp").forward(request, response);
 
 	        } catch (SQLException e) {
 	            throw new ServletException("Errore nel recupero dei prodotti", e);

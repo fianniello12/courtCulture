@@ -110,3 +110,104 @@ p a:hover {
     background-color: #dfe300;
     transform: scale(1.05);
 }
+
+@media screen and (max-width: 700px) {
+
+    body {
+        padding: 25px 15px;
+    }
+
+
+    form {
+        max-width: 500px;
+
+        padding: 18px;
+    }
+
+
+    #title {
+        font-size: 30px;
+    }
+
+
+    .input-label {
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    body {
+        padding: 15px 10px;
+
+        justify-content: flex-start;
+    }
+
+
+    form {
+        width: 100%;
+
+        margin-top: 10px;
+
+        padding: 15px;
+
+        border-width: 3px;
+    }
+
+
+    #title {
+        margin-left: 0;
+
+        font-size: 27px;
+
+        text-align: center;
+    }
+
+
+    .input-container {
+        padding: 3px;
+
+        margin: 8px 0;
+    }
+
+
+    .input-label {
+        font-size: 16px;
+    }
+
+
+    input,
+    select {
+        padding: 11px;
+
+        font-size: 16px;
+    }
+
+
+    button {
+        padding: 13px;
+
+        font-size: 18px;
+    }
+
+
+    p {
+        padding-left: 0;
+
+        text-align: center;
+
+        font-size: 14px;
+    }
+
+
+    p a {
+        display: block;
+
+        width: 100%;
+
+        margin-top: 10px;
+        margin-left: 0;
+
+        text-align: center;
+    }
+}

@@ -1,17 +1,32 @@
 @charset "UTF-8";
 
+* {
+    box-sizing: border-box;
+}
+
+html,
 body {
-	min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+
+    margin: 0;
+
     font-family: Arial, Helvetica, sans-serif;
+
     color: white;
     background-color: #000;
+
     display: flex;
-	flex-direction: column;
-	margin: 0;	
+    flex-direction: column;
 }
 
 .navbar {
     position: fixed;
+
     top: 0;
     left: 0;
     right: 0;
@@ -22,155 +37,174 @@ body {
     align-items: center;
 
     padding: 0 60px;
+
     z-index: 10;
 
-    background-color: #000000;
+    background-color: #000;
 }
 
-.nav{
+
+.nav {
     width: 100%;
 }
 
+
 .nav-ul {
-	position: relative;
+    position: relative;
+
+    width: 100%;
 
     display: flex;
     align-items: center;
 
-    width: 100%;
-
     list-style: none;
+
     margin: 0;
     padding: 0;
 }
 
-.nav-ul li{
-	display: flex;
+
+.nav-ul li {
+    display: flex;
     align-items: center;
 }
 
+
 .navbar a {
     color: white;
+
     text-decoration: none;
 
     font-size: 16px;
     font-weight: 500;
+
     text-transform: uppercase;
+
     letter-spacing: 1px;
 }
+
 
 .navbar a:hover {
     opacity: 0.7;
 }
 
-#navShop{
-	margin-left: 45px;	
+
+#navShop {
+    margin-left: 45px;
 }
 
+
 #navLogo {
-   	position: absolute;
+    position: absolute;
+
     left: 50%;
+
     transform: translateX(-50%);
 }
 
-#nav-image{
-	height: 95px;
+
+#nav-image {
+    height: 95px;
+    width: auto;
 }
 
-#navLogin{
-	margin-left: auto;
+
+#navLogin,
+#navLogout {
+    margin-left: auto;
 }
 
-#navLogout{
-	margin-left: auto;
-}
 
-#navCarrello{
+#navCarrello {
     margin-left: 45px;
 }
+
 
 .logo-img {
     width: 170px;
     height: auto;
+
     display: block;
 }
 
 .admin-product-section {
     min-height: 100vh;
 
-    padding: 100px 60px 80px 60px;
+    padding: 140px 60px 80px;
 
     background-color: #000;
+
     color: white;
 
     display: flex;
     flex-direction: column;
-    align-items: left;
-    
+
+    align-items: flex-start;
+
     background-image: url("../images/nocta2.jpg");
+
     background-size: cover;
     background-position: center;
-    
+    background-repeat: no-repeat;
 }
 
 
 .admin-product-section h1 {
+    margin-top: 0;
     margin-bottom: 35px;
 
-    font-size: 42px;
+    font-size: clamp(32px, 5vw, 42px);
+
     color: #F5F916;
 
     text-transform: uppercase;
+
     letter-spacing: 2px;
 }
 
-.admin-products-section h2 {
-    margin-bottom: 30px;
-
-    font-size: 34px;
-    color: #F5F916;
-
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.admin-products-section p {
-    color: white;
-    font-size: 18px;
-}
 
 .admin-product-section form {
     width: 100%;
     max-width: 650px;
 
-    background-color: black;
-
     padding: 40px;
 
+    background-color: black;
+
     border-radius: 20px;
-    border: 1px solid rgba(245, 249, 22, 0.4); 
+
+    border:
+        1px solid
+        rgba(245, 249, 22, 0.4);
 
     display: flex;
     flex-direction: column;
+
     gap: 14px;
 
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
-    
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.7);
 }
+
 
 .admin-product-section label {
     font-size: 14px;
     font-weight: bold;
 
     text-transform: uppercase;
+
     letter-spacing: 1px;
 
     color: #F5F916;
 }
 
+
 .admin-product-section input,
 .admin-product-section textarea {
     width: 100%;
+
+    min-width: 0;
 
     padding: 13px 15px;
 
@@ -182,26 +216,31 @@ body {
 
     font-size: 15px;
 
-    box-sizing: border-box;
     outline: none;
 }
 
+
 .admin-product-section textarea {
     min-height: 110px;
+
     resize: vertical;
 }
+
 
 .admin-product-section input:focus,
 .admin-product-section textarea:focus {
     outline: 2px solid #F5F916;
 }
 
+
 .admin-product-section input[type="file"] {
     background-color: transparent;
+
     color: white;
 
     padding-left: 0;
 }
+
 
 .admin-product-section button {
     margin-top: 20px;
@@ -218,67 +257,133 @@ body {
     font-weight: bold;
 
     text-transform: uppercase;
+
     letter-spacing: 1px;
 
     cursor: pointer;
 
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
 }
+
 
 .admin-product-section button:hover {
     transform: translateY(-3px);
+
     opacity: 0.85;
 }
+
+#table-product {
+    width: 100%;
+
+    padding: 50px 60px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    background-image: url("../images/nocta3.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow-x: auto;
+}
+
+
+.admin-products-section h2 {
+    margin-bottom: 30px;
+
+    font-size: clamp(27px, 4vw, 34px);
+
+    color: #F5F916;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+
+.admin-products-section p {
+    color: white;
+
+    font-size: 18px;
+}
+
 
 .admin-products-section table {
     width: 100%;
     max-width: 1100px;
 
-	margin: 35px;
+    margin: 35px auto;
+
     border-collapse: collapse;
+
     border: none;
 
     background-color: black;
 
     border-radius: 18px;
+
     overflow: hidden;
 
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.7);
 }
+
 
 .admin-products-section thead {
     background-color: #F5F916;
+
     color: #003488;
 }
+
 
 .admin-products-section th {
     padding: 16px;
 
     font-size: 14px;
+
     text-transform: uppercase;
+
     letter-spacing: 1px;
 
     text-align: center;
+
+    white-space: nowrap;
 }
+
 
 .admin-products-section td {
     padding: 15px;
 
     text-align: center;
+
     vertical-align: middle;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.15);
 
     font-size: 15px;
 }
 
+
 .admin-products-section tbody tr {
-    transition: background-color 0.2s ease;
+    transition:
+        background-color 0.2s ease;
 }
 
+
 .admin-products-section tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color:
+        rgba(255, 255, 255, 0.08);
 }
+
 
 .admin-products-section td img {
     width: 80px;
@@ -289,69 +394,98 @@ body {
     background-color: #fff;
 
     border-radius: 10px;
+
     padding: 5px;
 }
+
 
 .admin-products-section form {
     margin: 0;
 }
 
-#table-product{
-	display: flex;
-    flex-direction: column;
-    align-items: center;
-	
-	background-image: url("../images/nocta3.jpg");
-    background-size: cover;
-    background-position: center;
-}
-
 .admin-orders-section {
+    width: 100%;
+
+    padding: 40px 60px;
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
     gap: 20px;
 
-    width: 100%;
-    padding: 40px 60px;
-    box-sizing: border-box;
-    
-    background-image: url("../images/anthonyEdwards.jpg");
+    background-image:
+        url("../images/anthonyEdwards.jpg");
+
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
 
 .admin-orders-section h2 {
     grid-column: 1 / -1;
+
     text-align: center;
+
     margin-bottom: 20px;
-    
+
     color: #F5F916;
 
+    font-size: clamp(27px, 4vw, 34px);
+
     text-transform: uppercase;
+
     letter-spacing: 2px;
 }
 
 
-
 .admin-orders-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    
     width: 100%;
     max-width: 350px;
 
-    background-color: black;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+    min-width: 0;
+
+    margin: 0 auto;
 
     padding: 40px;
 
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    background-color: black;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.7);
+
     border-radius: 20px;
-    border: 1px solid rgba(245, 249, 22, 0.4);
+
+    border:
+        1px solid
+        rgba(245, 249, 22, 0.4);
 }
 
+
+.admin-orders-section input,
+.admin-orders-section select {
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 8px;
+}
+
+
 .admin-orders-section button {
+    width: 100%;
+
     margin-top: 20px;
 
     padding: 15px;
@@ -366,155 +500,436 @@ body {
     font-weight: bold;
 
     text-transform: uppercase;
+
     letter-spacing: 1px;
 
     cursor: pointer;
 
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
 }
+
 
 .admin-orders-section button:hover {
     transform: translateY(-3px);
+
     opacity: 0.85;
 }
 
-
 .orders-results {
     grid-column: 1 / -1;
+
     width: 100%;
+
     margin-top: 30px;
+
+    overflow-x: auto;
+
+    padding-bottom: 10px;
 }
 
 
 .orders-results table {
-	width: 80%;
-    max-width: 1100px;
-    
+    width: 80%;
 
-	margin: 0 auto;
+    max-width: 1100px;
+
+    min-width: 800px;
+
+    margin: 0 auto;
+
     border-collapse: collapse;
+
     border: none;
-    
 
     background-color: black;
 
     border-radius: 18px;
+
     overflow: hidden;
 
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.7);
 }
+
 
 .admin-orders-section thead {
     background-color: #F5F916;
+
     color: #003488;
 }
+
 
 .admin-orders-section th {
     padding: 16px;
 
     font-size: 14px;
+
     text-transform: uppercase;
+
     letter-spacing: 1px;
 
     text-align: center;
+
+    white-space: nowrap;
 }
+
 
 .admin-orders-section td {
     padding: 15px;
 
     text-align: center;
+
     vertical-align: middle;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.15);
 
     font-size: 15px;
 }
 
+
 .admin-orders-section tbody tr {
-    transition: background-color 0.2s ease;
+    transition:
+        background-color 0.2s ease;
 }
 
+
 .admin-orders-section tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color:
+        rgba(255, 255, 255, 0.08);
 }
 
 .admin-utenti-section {
+    width: 100%;
+
     min-height: 50vh;
 
-    padding: 50px 60px 80px 60px;
+    padding: 50px 60px 80px;
 
     background-color: #000;
     color: white;
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
-    
+
     background-image: url("../images/mj.jpg");
+
     background-size: cover;
     background-position: center;
-    
-    
+    background-repeat: no-repeat;
+
+    overflow-x: auto;
 }
+
 
 .admin-utenti-section h2 {
-    margin: 5px 30px;
+    margin: 5px 30px 30px;
 
-    font-size: 34px;
+    font-size: clamp(27px, 4vw, 34px);
+
     color: #F5F916;
 
-	text-align: center;
+    text-align: center;
+
     text-transform: uppercase;
+
     letter-spacing: 2px;
 }
+
 
 .admin-utenti-section table {
     width: 100%;
     max-width: 1100px;
 
-	margin: 35px;
-	margin-bottom: 5px;
+    margin: 35px auto 5px;
+
     border-collapse: collapse;
+
     border: none;
 
     background-color: black;
 
     border-radius: 18px;
+
     overflow: hidden;
 
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.7);
 }
+
 
 .admin-utenti-section thead {
     background-color: #F5F916;
+
     color: #003488;
 }
+
 
 .admin-utenti-section th {
     padding: 16px;
 
     font-size: 14px;
+
     text-transform: uppercase;
+
     letter-spacing: 1px;
 
     text-align: center;
+
+    white-space: nowrap;
 }
+
 
 .admin-utenti-section td {
     padding: 15px;
 
     text-align: center;
+
     vertical-align: middle;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.15);
 
     font-size: 15px;
 }
 
+
 .admin-utenti-section tbody tr {
-    transition: background-color 0.2s ease;
+    transition:
+        background-color 0.2s ease;
 }
 
+
 .admin-utenti-section tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color:
+        rgba(255, 255, 255, 0.08);
+}
+
+
+@media screen and (max-width: 900px) {
+
+    .admin-product-section {
+        padding:
+            130px
+            30px
+            60px;
+    }
+
+
+    .admin-product-section form {
+        max-width: 100%;
+    }
+
+
+    #table-product {
+        align-items: stretch;
+
+        padding:
+            40px
+            30px;
+    }
+
+
+    .admin-products-section table {
+        min-width: 850px;
+    }
+
+
+    .admin-orders-section {
+        grid-template-columns: 1fr;
+
+        padding:
+            40px
+            30px;
+    }
+
+
+    .admin-orders-section form {
+        max-width: 500px;
+    }
+
+
+    .admin-utenti-section {
+        padding:
+            40px
+            30px
+            60px;
+    }
+
+
+    .admin-utenti-section table {
+        min-width: 750px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .navbar {
+        height: auto;
+
+        min-height: 80px;
+
+        padding:
+            10px
+            20px;
+    }
+
+
+    .nav-ul {
+        min-height: 60px;
+
+        justify-content: space-between;
+
+        gap: 15px;
+    }
+
+
+    .navbar a {
+        font-size: 12px;
+
+        letter-spacing: 0.5px;
+    }
+
+
+    #navShop,
+    #navCarrello {
+        margin-left: 0;
+    }
+
+
+    #navLogin,
+    #navLogout {
+        margin-left: 0;
+    }
+
+
+    #navLogo {
+        position: static;
+
+        transform: none;
+
+        order: -1;
+    }
+
+
+    #nav-image {
+        width: 90px;
+
+        height: auto;
+    }
+
+
+    .logo-img {
+        width: 120px;
+    }
+
+
+    .admin-product-section {
+        padding:
+            110px
+            20px
+            50px;
+    }
+
+
+    #table-product {
+        padding:
+            35px
+            20px;
+    }
+
+
+    .admin-orders-section {
+        padding:
+            35px
+            20px;
+    }
+
+
+    .admin-utenti-section {
+        padding:
+            35px
+            20px
+            50px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .admin-product-section h1 {
+        font-size: 30px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .admin-product-section form {
+        padding: 25px;
+
+        border-radius: 15px;
+    }
+
+
+    .admin-products-section h2,
+    .admin-orders-section h2,
+    .admin-utenti-section h2 {
+        font-size: 27px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .admin-orders-section form {
+        padding: 25px;
+
+        border-radius: 15px;
+    }
+
+
+    .admin-products-section table {
+        min-width: 800px;
+    }
+
+
+    .orders-results table {
+        min-width: 750px;
+    }
+
+
+    .admin-utenti-section table {
+        min-width: 700px;
+    }
+
+
+    .admin-products-section th,
+    .admin-orders-section th,
+    .admin-utenti-section th {
+        padding: 12px;
+
+        font-size: 12px;
+    }
+
+
+    .admin-products-section td,
+    .admin-orders-section td,
+    .admin-utenti-section td {
+        padding: 12px;
+
+        font-size: 13px;
+    }
+
+
+    .admin-products-section td img {
+        width: 60px;
+        height: 60px;
+    }
 }

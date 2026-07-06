@@ -165,6 +165,194 @@ body {
     display: block;
 }
 
+@media screen and (max-width: 900px) {
+
+    #main {
+        padding:
+            125px
+            30px
+            50px;
+    }
+
+
+    .main-images {
+        gap: 20px;
+    }
+
+
+    .div-left img,
+    .div-right img {
+        height: 450px;
+
+        min-height: 0;
+    }
+
+
+    .description {
+        padding:
+            70px
+            30px
+            50px;
+    }
+
+
+    .div-description {
+        gap: 30px;
+    }
+
+
+    #description-image {
+        width: 280px;
+    }
+
+
+    .paragraf-description {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .main-images {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+
+    .div-left,
+    .div-right {
+        width: 100%;
+    }
+
+
+    .div-left img,
+    .div-right img {
+        width: 100%;
+
+        height: 480px;
+    }
+
+
+    .title-description {
+        font-size: 34px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .div-description {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 30px;
+    }
+
+
+    .description-text {
+        width: 100%;
+    }
+
+
+    .paragraf-description {
+        font-size: 17px;
+
+        line-height: 1.6;
+    }
+
+
+    #description-image {
+        width: 100%;
+
+        max-width: 420px;
+
+        margin: 0 auto;
+    }
+
+
+    .footer {
+        padding: 25px 20px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .navbar {
+        height: auto;
+
+        min-height: 80px;
+
+        padding: 10px 20px;
+    }
+
+
+    .nav-ul {
+        min-height: 60px;
+
+        justify-content: space-between;
+
+        gap: 15px;
+    }
+
+
+    .navbar a {
+        font-size: 12px;
+
+        letter-spacing: 0.5px;
+    }
+
+
+    #navShop,
+    #navAdmin,
+    #navCarrello {
+        margin-left: 0;
+    }
+
+
+    #navLogin,
+    #navLogout {
+        margin-left: 0;
+    }
+
+
+    #navLogo {
+        position: static;
+
+        transform: none;
+
+        order: -1;
+    }
+
+
+    #nav-image {
+        width: 90px;
+
+        height: auto;
+    }
+
+
+    .logo-img {
+        width: 120px;
+    }
+
+
+    #main {
+        padding:
+            105px
+            20px
+            40px;
+    }
+
+
+    .description {
+        padding:
+            60px
+            20px
+            40px;
+    }
+}
+
 .footerLogo {
     display: flex;
     justify-content: center;
