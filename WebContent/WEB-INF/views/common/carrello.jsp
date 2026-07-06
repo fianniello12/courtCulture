@@ -20,6 +20,8 @@
 
 <link rel="stylesheet"href="<%= contextPath %>/styles/carrello.css">
 <script src="scripts/validate.js" defer></script>
+</head>
+
 <body>
 
 <header class="navbar">
@@ -103,7 +105,7 @@
                 <label for="metodoPagamento">Metodo di pagamento:</label>
                 <select id="metodoPagamento" name="metodoPagamento" required>
 
-                    <option value="Carta" <%if(session.getAttribute("metodoPagamento").equals("Carta di credito")){%> selected <%} %>>Carta di credito</option>
+                    <option value="Carta di credito" <%if(session.getAttribute("metodoPagamento").equals("Carta di credito")){%> selected <%} %>>Carta di credito</option>
                     <option value="PayPal"<%if(session.getAttribute("metodoPagamento").equals("PayPal")){%> selected <%} %>>PayPal</option>
                     <option value="Contrassegno"<%if(session.getAttribute("metodoPagamento").equals("Contrassegno")){%> selected <%} %>>Contrassegno</option>
 

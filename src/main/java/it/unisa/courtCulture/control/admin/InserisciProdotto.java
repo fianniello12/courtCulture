@@ -11,6 +11,11 @@ import jakarta.servlet.http.Part;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
@@ -25,12 +30,36 @@ public class InserisciProdotto extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private ProdottoDaoImpl prodottoDao;
+    private Path uploadDirectory;
+
 
     @Override
     public void init() throws ServletException {
         DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
         prodottoDao = new ProdottoDaoImpl(ds);
+        String uploadPath =getServletContext().getInitParameter("productImageUploadPath");
+        
+        if (uploadPath == null || uploadPath.isBlank()) {
+
+            throw new ServletException(
+                    "Percorso upload immagini non configurato"
+            );
+        }
+
+
+        uploadDirectory =Paths.get(uploadPath).toAbsolutePath().normalize();
+
+
+        try {
+
+            Files.createDirectories(uploadDirectory);
+
+        } catch (IOException e) {
+
+            throw new ServletException("Impossibile creare la cartella delle immagini",e);
+        }
     }
+        
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -81,50 +110,88 @@ public class InserisciProdotto extends HttpServlet {
             Part imagePart = request.getPart("immagine");
 
             if (imagePart != null && imagePart.getSize() > 0) {
-                String originalFileName = imagePart.getSubmittedFileName();
-                String extension = getFileExtension(originalFileName);
+            	 
+            	String mimeType =imagePart.getContentType();
 
-                String fileName = "prodotto_" + codiceProdotto + extension;
 
-                String uploadPath = getServletContext().getRealPath("/images/prodotti");
+                
+                 if (mimeType == null || !mimeType.startsWith("image/")) {
 
-                File uploadDir = new File(uploadPath);
-                if (!uploadDir.exists()) {
-                    uploadDir.mkdirs();
-                }
+                     request.setAttribute("error","Il file selezionato non è un'immagine.");
 
-                String filePath = uploadPath + File.separator + fileName;
+                     request.getRequestDispatcher("/admin/welcomeAdmin.jsp").forward(request, response);
 
-                imagePart.write(filePath);
+                     return;
+            }
+                 String originalFileName =imagePart.getSubmittedFileName();
 
-                prodotto.setCodice(codiceProdotto);
-                prodotto.setPathImmagine("images/prodotti/" + fileName);
-                prodotto.setMimeType(imagePart.getContentType());
 
-                prodottoDao.doUpdateImage(prodotto);
+            String extension =getFileExtension(originalFileName);
+
+
+            String fileName ="prodotto_"+ codiceProdotto+ extension;
+
+
+            Path destination =uploadDirectory.resolve(fileName).normalize();
+
+
+            
+            if (!destination.startsWith(uploadDirectory)) {
+
+                throw new ServletException("Percorso immagine non valido");
             }
 
-            response.sendRedirect(request.getContextPath() + "/WelcomeAdmin");
 
-        } catch (NumberFormatException e) {
-            request.setAttribute("error", "Prezzo o quantità non validi.");
-            request.getRequestDispatcher("/admin/welcomeAdmin.jsp").forward(request, response);
+            try (InputStream input =imagePart.getInputStream()) {
 
-        } catch (SQLException e) {
-            throw new ServletException("Errore database durante l'inserimento del prodotto", e);
-        }
-    }
+                Files.copy(input,destination,StandardCopyOption.REPLACE_EXISTING);
+            }
 
-    private String getFileExtension(String fileName) {
-        if (fileName == null) {
-            return "";
-        }
 
-        int dotIndex = fileName.lastIndexOf(".");
-        if (dotIndex == -1) {
-            return "";
+            prodotto.setCodice(codiceProdotto);
+
+            prodotto.setPathImmagine(fileName);
+
+            prodotto.setMimeType(mimeType);
+
+
+            prodottoDao.doUpdateImage(prodotto);
         }
 
-        return fileName.substring(dotIndex);
+
+        response.sendRedirect(request.getContextPath()+ "/WelcomeAdmin");
+
+
+    } catch (NumberFormatException e) {
+
+        request.setAttribute("error","Prezzo o quantità non validi.");
+
+        request.getRequestDispatcher("/admin/welcomeAdmin.jsp").forward(request, response);
+
+
+    } catch (SQLException e) {
+
+        throw new ServletException("Errore database durante l'inserimento del prodotto",e);
     }
 }
+
+	
+	private String getFileExtension(String fileName) {
+	
+	    if (fileName == null) {
+	        return "";
+	    }
+	
+	
+	    int dotIndex =fileName.lastIndexOf(".");
+	
+	
+	    if (dotIndex == -1) {
+	        return "";
+	    }
+	
+	
+	    return fileName.substring(dotIndex).toLowerCase();
+	}
+	
+	}

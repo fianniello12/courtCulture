@@ -71,13 +71,7 @@ function aggiornaCarrelloDOM(risposta) {
 
         var item = risposta.items[i];
 
-        var imagePath;
-
-        if (item.pathImmagine != null && item.pathImmagine != "") {
-            imagePath = contextPath + "/" + item.pathImmagine;
-        } else {
-            imagePath = contextPath + "/images/no-image.png";
-        }
+		var imagePath = contextPath + "/ImmagineProdotto?codice=" + encodeURIComponent(item.codice);
 
         var div = document.createElement("div");
         div.className = "cart-item";

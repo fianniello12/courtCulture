@@ -78,11 +78,6 @@ function aggiungiAlCarrello() {
     );
 
 
-    xhr.setRequestHeader(
-        "Connection",
-        "close"
-    );
-
 
     xhr.send(params);
 }

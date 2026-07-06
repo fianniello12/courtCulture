@@ -133,11 +133,7 @@ List<UtenteBean> utenti =(List<UtenteBean>) request.getAttribute("utenti");
 		</td>
 
 		<td>
-			<% if (prodotto.getPathImmagine() != null && !prodotto.getPathImmagine().isEmpty()) { %>
-				<img src="<%= contextPath %>/<%= prodotto.getPathImmagine() %>" alt="<%= prodotto.getNome() %>" width="80">
-			<% } else { %>
-				<img src="<%= contextPath %>/images/no-image.png" alt="Immagine non disponibile" width="80">
-			<% } %>
+			<img src="<%= contextPath %>/ImmagineProdotto?codice=<%= prodotto.getCodice() %>" alt="<%= prodotto.getNome() %>" width="80">
 		</td>
 
         <td>

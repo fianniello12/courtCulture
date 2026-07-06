@@ -63,18 +63,10 @@
                 <div class="product-card">
 
                     <div class="product-image-box">
-                        <% if (prodotto.getPathImmagine() != null && !prodotto.getPathImmagine().isEmpty()) { %>
-                            <img 
-                                src="<%= contextPath %>/<%= prodotto.getPathImmagine() %>" 
-                                alt="<%= prodotto.getNome() %>" 
-                                class="product-image">
-                        <% } else { %>
-                            <img 
-                                src="<%= contextPath %>/images/no-image.png" 
-                                alt="Immagine non disponibile" 
-                                class="product-image">
-                        <% } %>
-                    </div>
+
+    					<img src="<%= contextPath %>/ImmagineProdotto?codice=<%= prodotto.getCodice() %>" alt="<%= prodotto.getNome() %>" class="product-image">
+
+					</div>
 
                     <div class="product-info">
                         <h3><%= prodotto.getNome() %></h3>

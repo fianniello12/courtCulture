@@ -62,11 +62,9 @@
 <section class="product">
 
 	<div class="productImage">
-	<% if (prodotto.getPathImmagine() != null && !prodotto.getPathImmagine().isEmpty()) { %>
-                <img src="<%= contextPath %>/<%= prodotto.getPathImmagine() %>" alt="<%= prodotto.getNome() %>">
-            <% } else { %>
-                <img src="<%= contextPath %>/images/no-image.png" alt="Immagine non disponibile">
-            <% } %>
+	
+	<img src="<%= contextPath %>/ImmagineProdotto?codice=<%= prodotto.getCodice() %>" alt="<%= prodotto.getNome() %>">
+	
 	</div>
 	
 	<div class="productInfo">
