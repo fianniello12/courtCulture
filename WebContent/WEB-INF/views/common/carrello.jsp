@@ -78,13 +78,13 @@
 	
 	 
         <div class="cart-summary">
-        <% if (isLogged) { %>
+        
             <h2>Totale: € <span id="totale-carrello">0.00</span></h2>
 		
             <button id="svuota-carrello" type="button" onclick="svuotaCarrello()">
                 Svuota carrello
             </button>
-        <% } %>
+
         </div>
 	
         <p id="messaggio"></p>
