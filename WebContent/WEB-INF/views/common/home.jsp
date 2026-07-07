@@ -53,9 +53,9 @@
 		<div class="description-text">
 			<h2 class="title-description">Chi siamo?</h2>
 	
-			<p class="paragraf-description">Court Culture ha l’obiettivo di esportare tutto il movimento della pallacanestro, fornendo prodotti per chi vive questo sport come stile di vita, sia dentro che fuori dal campo. 
-			Il catalogo comprende moltissimi prodotti come scarpe, le iconiche jersey delle squadre NBA, numerosi accessori e tanto altro. 
-			Il prodotto principale sono ovviamente le scarpe da gioco, che cercano di unire prestazioni, comfort e design, permettendo agli appassionati di portare il loro stile di vita anche sul parquet.
+			<p class="paragraf-description">Court Culture ha l’obiettivo di esportare tutto il movimento della pallacanestro, fornendo calzature per chi vive questo sport come stile di vita, sia dentro che fuori dal campo. 
+			Il catalogo comprende moltissime scarpe, dei brand più famosi e dei migliori giocatori NBA. 
+			Il prodotto principale sono ovviamente le scarpe da gioco, che cercano di unire prestazioni, comfort e design, permettendo agli appassionati di portare il loro stile di vita anche sul parquet, ma sono presenti anche calzature per tutti i giorni.
 			Court Culture non si pone solo come un e-commerce, ma punta a diventare un vero e proprio punto di riferimento per tutti gli appassionati di questo sport.
 			</p>
 		</div>

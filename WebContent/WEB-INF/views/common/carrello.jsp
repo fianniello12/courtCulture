@@ -19,7 +19,7 @@
 <title>Carrello</title>
 
 <link rel="stylesheet"href="<%= contextPath %>/styles/carrello.css">
-<script src="scripts/validate.js" defer></script>
+<script src="<%= contextPath %>/scripts/carrelloPage.js?v=2"></script>
 </head>
 
 <body>
