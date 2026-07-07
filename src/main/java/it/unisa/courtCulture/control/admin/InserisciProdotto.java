@@ -41,9 +41,7 @@ public class InserisciProdotto extends HttpServlet {
         
         if (uploadPath == null || uploadPath.isBlank()) {
 
-            throw new ServletException(
-                    "Percorso upload immagini non configurato"
-            );
+            throw new ServletException("Percorso upload immagini non configurato");
         }
 
 
@@ -74,8 +72,7 @@ public class InserisciProdotto extends HttpServlet {
 
         HttpSession session = request.getSession(false);
 
-        if (session == null || session.getAttribute("role") == null
-                || !session.getAttribute("role").equals("admin")) {
+        if (session == null || session.getAttribute("role") == null || !session.getAttribute("role").equals("admin")) {
 
             response.sendRedirect(request.getContextPath() + "/Login");
             return;
@@ -84,7 +81,7 @@ public class InserisciProdotto extends HttpServlet {
         try {
             String nome = request.getParameter("nome");
             String descrizione = request.getParameter("descrizione");
-            float prezzo = Float.parseFloat(request.getParameter("prezzo").replace(",", "."));
+            float prezzo = Float.parseFloat(request.getParameter("prezzo"));
             int quantita = Integer.parseInt(request.getParameter("quantita"));
             String categoria = request.getParameter("categoria");
             String brand = request.getParameter("brand");
@@ -115,15 +112,16 @@ public class InserisciProdotto extends HttpServlet {
 
 
                 
-                 if (mimeType == null || !mimeType.startsWith("image/")) {
+            if (mimeType == null || !mimeType.startsWith("image/")) {
 
-                     request.setAttribute("error","Il file selezionato non è un'immagine.");
+            	request.setAttribute("error","Il file selezionato non è un'immagine.");
 
-                     request.getRequestDispatcher("/admin/welcomeAdmin.jsp").forward(request, response);
+                request.getRequestDispatcher("/admin/welcomeAdmin.jsp").forward(request, response);
 
-                     return;
+                return;
             }
-                 String originalFileName =imagePart.getSubmittedFileName();
+                 
+            String originalFileName =imagePart.getSubmittedFileName();
 
 
             String extension =getFileExtension(originalFileName);

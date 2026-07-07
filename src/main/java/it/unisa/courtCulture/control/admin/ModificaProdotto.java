@@ -40,9 +40,7 @@ public class ModificaProdotto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 
-        if (session == null 
-                || session.getAttribute("role") == null
-                || !"admin".equalsIgnoreCase((String) session.getAttribute("role"))) {
+        if (session == null || session.getAttribute("role") == null || !"admin".equalsIgnoreCase((String) session.getAttribute("role"))) {
 
             response.sendRedirect(request.getContextPath() + "/Login");
             return;
@@ -53,7 +51,7 @@ public class ModificaProdotto extends HttpServlet {
             String nome = request.getParameter("nome");
             String brand = request.getParameter("brand");
             String categoria = request.getParameter("categoria");
-            float prezzo = Float.parseFloat(request.getParameter("prezzo").replace(",", "."));
+            float prezzo = Float.parseFloat(request.getParameter("prezzo"));
             int quantita = Integer.parseInt(request.getParameter("quantita"));
             boolean attivo = Boolean.parseBoolean(request.getParameter("attivo"));
 

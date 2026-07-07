@@ -1,14 +1,3 @@
-document.getElementById("formCarrello").addEventListener(
-    "submit",
-    function(event) {
-
-        event.preventDefault();
-
-        aggiungiAlCarrello();
-    }
-);
-
-
 function aggiungiAlCarrello() {
 
     var codice = document.getElementById("codice").value;
@@ -26,11 +15,7 @@ function aggiungiAlCarrello() {
     }
 
 
-    var params =
-        "azione=add" +
-        "&codice=" + encodeURIComponent(codice) +
-        "&taglia=" + encodeURIComponent(taglia) +
-        "&quantita=" + encodeURIComponent(quantita);
+    var params = "azione=add" + "&codice=" + encodeURIComponent(codice) + "&taglia=" + encodeURIComponent(taglia) + "&quantita=" + encodeURIComponent(quantita);
 
 
     var xhr = new XMLHttpRequest();
@@ -38,46 +23,34 @@ function aggiungiAlCarrello() {
 
     xhr.onreadystatechange = function() {
 
-        if (xhr.readyState == 4) {
+		if (xhr.readyState == 4) {
 
-            if (xhr.status == 200) {
+		            if (xhr.status == 200) {
 
-                var risposta = JSON.parse(xhr.responseText);
-
-
-                if (risposta.success) {
-
-                    messaggio.textContent =
-                        "Prodotto aggiunto al carrello.";
-
-                } else {
-
-                    messaggio.textContent =
-                        risposta.message;
-                }
-
-            } else {
-
-                messaggio.textContent =
-                    "Errore nella richiesta: " + xhr.statusText;
-            }
-        }
-    };
+		                var risposta = JSON.parse(xhr.responseText);
 
 
-    xhr.open(
-        "POST",
-        contextPath + "/Carrello",
-        true
-    );
+		                if (risposta.success) {
+
+		                    messaggio.textContent ="Prodotto aggiunto al carrello.";
+
+		                } else {
+
+		                    messaggio.textContent =risposta.message;
+		                }
+
+		            } else {
+
+		                messaggio.textContent ="Errore nella richiesta: " +xhr.statusText;
+		            }
+		        }
+		    };
+    
 
 
-    xhr.setRequestHeader(
-        "Content-Type",
-        "application/x-www-form-urlencoded"
-    );
+    xhr.open("POST",contextPath + "/Carrello",true);
 
-
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 
     xhr.send(params);
 }

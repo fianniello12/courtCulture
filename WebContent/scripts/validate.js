@@ -17,6 +17,7 @@ const cvvMessage="Inserire un CVV valido"
 
 
 function validateRegistrazione() {
+	
     let valid = true;
     let form = document.getElementById("regForm");
 
@@ -39,14 +40,6 @@ function validateRegistrazione() {
     if (!validateFormElem(form.psw, passwordPattern, document.getElementById("errorpsw"), passwordErrorMessage)) {
         valid = false;
     }
-
-	if (!validateFormElem(form.num, cardNumberPattern, document.getElementById("errorNum"), cardNumberMessage)) {
-	        valid = false;
-	    }
-		
-	if (!validateFormElem(form.cvv, cvvPattern, document.getElementById("errorCvv"), cvvMessage)) {
-			valid = false;
-	    }
 	
     return valid;
 }
@@ -66,8 +59,38 @@ function validateLogin() {
     return valid;
 }
 
+function validatePagamento() {
+
+    let valid = true;
+    let form = document.getElementById("formOrdine");
+
+
+    if (!validateFormElem(form.num,cardNumberPattern,document.getElementById("errorNum"),cardNumberMessage)) {
+        valid = false;
+    }
+
+
+    if (!validateFormElem(form.cvv,cvvPattern,document.getElementById("errorCvv"),cvvMessage)) {
+        valid = false;
+    }
+
+
+    return valid;
+}
+
 function validateFormElem(formElem, pattern, span, message) {
     const value = formElem.value.trim();
+	
+	if (value === "") {
+
+	        formElem.classList.add("error");
+
+	        span.textContent = "Campo obbligatorio";
+
+	        span.style.color = "red";
+
+	        return false;
+	    }
 
     if (pattern.test(value)) {
         formElem.classList.remove("error");

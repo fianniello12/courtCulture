@@ -45,7 +45,7 @@ public class FiltraOrdini extends HttpServlet {
 		HttpSession session =request.getSession(false);
 
 
-	        if (session == null || !"admin".equals(session.getAttribute("role"))) {
+	        if (session == null || !session.getAttribute("role").equals("admin")) {
 
 	            response.sendRedirect(request.getContextPath() + "/Login");
 
@@ -61,12 +61,12 @@ public class FiltraOrdini extends HttpServlet {
 	            List<OrdineBean> ordini = null;
 
 
-	            if ("tutti".equals(filtro)) {
+	            if (filtro.equals("tutti")) {
 
 	                ordini =ordineDao.doRetrieveAll("data_ordine");
 
 
-	            } else if ("periodo".equals(filtro)) {
+	            } else if (filtro.equals("periodo")) {
 
 	                LocalDate dataDa =LocalDate.parse(request.getParameter("dataDa"));
 
@@ -75,7 +75,7 @@ public class FiltraOrdini extends HttpServlet {
 	                ordini =ordineDao.doRetrieveByPeriodo(dataDa,dataA);
 
 
-	            } else if ("cliente".equals(filtro)) {
+	            } else if (filtro.equals("cliente")) {
 
 	                int idCliente =Integer.parseInt(request.getParameter("idCliente"));
 

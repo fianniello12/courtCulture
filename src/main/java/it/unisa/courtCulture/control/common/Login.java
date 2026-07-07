@@ -51,15 +51,10 @@ public class Login extends HttpServlet {
 		String email= request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		email = validateField(email, "email", errors);
-		password = validateField(password, "password", errors);
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/common/login.jsp");		
-		if (!errors.isEmpty()) {
-			request.setAttribute("errors", errors);
-			dispatcher.forward(request, response);
-			return; 
-		}
+		
 		
 		try {
 			UtenteBean utente = utenteDao.doRetrieveByEmail(email);
@@ -85,7 +80,7 @@ public class Login extends HttpServlet {
             request.getSession().setAttribute("role", utente.getRuolo());
             request.getSession().setAttribute("metodoPagamento", utente.getMetodoPagamento());
 
-            if ("admin".equalsIgnoreCase(utente.getRuolo())) {
+            if (utente.getRuolo().equalsIgnoreCase("admin")) {
                 response.sendRedirect(request.getContextPath() + "/WelcomeAdmin");
             } else {
                 response.sendRedirect(request.getContextPath() + "/WelcomeUser");
@@ -97,14 +92,6 @@ public class Login extends HttpServlet {
 		
 	}
 	
-	private String validateField(String value, String fieldName, List<String> errors) {
-        if (value == null || value.trim().isEmpty()) {
-            errors.add("Il campo " + fieldName + " non può essere vuoto");
-            return "";
-        }
-        
-        
-        return value.trim();
-    }
+	
 	
 }

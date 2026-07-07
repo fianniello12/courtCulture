@@ -20,9 +20,10 @@
 
 <link rel="stylesheet"href="<%= contextPath %>/styles/carrello.css">
 <script src="<%= contextPath %>/scripts/carrelloPage.js?v=2"></script>
+<script src="<%= contextPath %>/scripts/validate.js"></script>
 </head>
 
-<body>
+<body onload="inizializzaPaginaCarrello()">
 
 <header class="navbar">
     <nav class="nav">	
@@ -74,15 +75,18 @@
         <div id="carrello-container">
 
         </div>
-
+	
+	 
         <div class="cart-summary">
+        <% if (isLogged) { %>
             <h2>Totale: € <span id="totale-carrello">0.00</span></h2>
-
-            <button id="svuota-carrello" type="button">
+		
+            <button id="svuota-carrello" type="button" onclick="svuotaCarrello()">
                 Svuota carrello
             </button>
+        <% } %>
         </div>
-
+	
         <p id="messaggio"></p>
 
     </section>
@@ -95,7 +99,7 @@
 
             <h2>Conferma ordine</h2>
 
-            <form action="ConfermaOrdine" method="post" id="formOrdine">
+            <form action="ConfermaOrdine" method="post" id="formOrdine" onsubmit="event.preventDefault(); confermaOrdine();">
 
                 <label for="indirizzoSpedizione">Indirizzo di spedizione:</label>
                 <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" placeholder="via, n.Civico Città" value="<%= session.getAttribute("indirizzo_spedizione") %>" required
@@ -103,7 +107,7 @@
 		    	<span id="errorAddress"></span>
 
                 <label for="metodoPagamento">Metodo di pagamento:</label>
-                <select id="metodoPagamento" name="metodoPagamento" required>
+                <select id="metodoPagamento" name="metodoPagamento" required onchange="gestisciDatiCarta()">
 
                     <option value="Carta di credito" <%if(session.getAttribute("metodoPagamento").equals("Carta di credito")){%> selected <%} %>>Carta di credito</option>
                     <option value="PayPal"<%if(session.getAttribute("metodoPagamento").equals("PayPal")){%> selected <%} %>>PayPal</option>
@@ -236,10 +240,7 @@
 <footer class="footer">
 	
     <div class="footerLogo">
-        <img 
-            src="images/footerLogo.png" 
-            alt="Court Culture Logo" 
-            class="logo-img">
+        <img src="images/footerLogo.png" alt="Court Culture Logo" class="logo-img">
     </div>
 	
     <div class="footer-text">
@@ -273,8 +274,6 @@
 <script>
     var contextPath = "<%= contextPath %>";
 </script>
-
-<script src="<%= contextPath %>/scripts/carrelloPage.js"></script>
 
 </body>
 </html>

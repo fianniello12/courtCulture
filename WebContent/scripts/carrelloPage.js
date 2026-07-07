@@ -1,31 +1,13 @@
-document.addEventListener("DOMContentLoaded", function() {
+function inizializzaPaginaCarrello() {
 
     caricaCarrello();
 
-    var svuotaButton = document.getElementById("svuota-carrello");
-
-    if (svuotaButton != null) {
-        svuotaButton.addEventListener("click", svuotaCarrello);
-    }
-
-    var formOrdine = document.getElementById("formOrdine");
+    var formOrdine =document.getElementById("formOrdine");
 
     if (formOrdine != null) {
-        formOrdine.addEventListener("submit", function(event) {
-            event.preventDefault();
-            confermaOrdine();
-        });
-		
-		var metodoPagamento =document.getElementById("metodoPagamento");
-
-
-		metodoPagamento.addEventListener("change",gestisciDatiCarta);
-
         gestisciDatiCarta();
-		
     }
-});
-
+}
 
 function caricaCarrello() {
 
@@ -76,27 +58,25 @@ function aggiornaCarrelloDOM(risposta) {
         var div = document.createElement("div");
         div.className = "cart-item";
 
-        div.innerHTML =
-            '<div class="cart-item-image">' +
-                '<img src="' + imagePath + '" alt="' + item.nome + '">' +
-            '</div>' +
+        div.innerHTML ='<div class="cart-item-image">' +
+                			'<img src="' + imagePath + '" alt="' + item.nome + '">' +
+            			'</div>' +
 
-            '<div class="cart-item-info">' +
-                '<h3>' + item.nome + '</h3>' +
-                '<p>Brand: ' + item.brand + '</p>' +
-                '<p>Taglia: ' + item.taglia + '</p>' +
-                '<p>Prezzo: € ' + Number(item.prezzo).toFixed(2) + '</p>' +
+            			'<div class="cart-item-info">' +
+                			'<h3>' + item.nome + '</h3>' +
+                			'<p>Brand: ' + item.brand + '</p>' +
+                			'<p>Taglia: ' + item.taglia + '</p>' +
+                			'<p>Prezzo: € ' + Number(item.prezzo).toFixed(2) + '</p>' +
 
-                '<label>Quantità:</label>' +
-                '<input type="number" min="1" value="' + item.quantita + '"' +
-                    ' onchange="aggiornaQuantita(' + item.codice + ',' + item.taglia + ', this.value)">' +
+                			'<label>Quantità:</label>' +
+                			'<input type="number" min="1" value="' + item.quantita + '"' + ' onchange="aggiornaQuantita(' + item.codice + ',' + item.taglia + ', this.value)">' +
 
-                '<p>Subtotale: € ' + Number(item.subtotale).toFixed(2) + '</p>' +
+                			'<p>Subtotale: € ' + Number(item.subtotale).toFixed(2) + '</p>' +
 
-                '<button type="button" onclick="rimuoviProdotto(' + item.codice + ',' + item.taglia + ')">' +
-                    'Rimuovi' +
-                '</button>' +
-            '</div>';
+                			'<button type="button" onclick="rimuoviProdotto(' + item.codice + ',' + item.taglia + ')">' +
+                    			'Rimuovi' +
+                			'</button>' +
+            			'</div>';
 
         container.appendChild(div);
     }
@@ -107,11 +87,7 @@ function aggiornaCarrelloDOM(risposta) {
 
 function aggiornaQuantita(codice, taglia, quantita) {
 
-    var params =
-        "azione=update" +
-        "&codice=" + encodeURIComponent(codice) +
-        "&taglia=" + encodeURIComponent(taglia) +
-        "&quantita=" + encodeURIComponent(quantita);
+    var params ="azione=update" +"&codice=" + encodeURIComponent(codice) + "&taglia=" + encodeURIComponent(taglia) + "&quantita=" + encodeURIComponent(quantita);
 
     inviaRichiestaCarrello(params, callbackAggiornamento);
 }
@@ -119,18 +95,14 @@ function aggiornaQuantita(codice, taglia, quantita) {
 
 function rimuoviProdotto(codice, taglia) {
 
-    var params =
-        "azione=remove" +
-        "&codice=" + encodeURIComponent(codice) +
-        "&taglia=" + encodeURIComponent(taglia);
+    var params ="azione=remove" + "&codice=" + encodeURIComponent(codice) + "&taglia=" + encodeURIComponent(taglia);
 
     inviaRichiestaCarrello(params, callbackAggiornamento);
 }
 
 
 function svuotaCarrello() {
-
-
+	
 	    var params = "azione=clear";
 
 	    inviaRichiestaCarrello(params,callbackAggiornamento);
@@ -213,7 +185,8 @@ function confermaOrdine() {
 
     xhr.onreadystatechange = function() {
 
-        if (xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState == 4 ){
+			if( xhr.status == 200) {
 
                 var risposta = JSON.parse(xhr.responseText);
 
@@ -222,7 +195,7 @@ function confermaOrdine() {
                 if (risposta.success) {
 
                     window.location.href = contextPath + "/Carrello";
-
+				}
             } else {
 
                 mostraMessaggio("Errore nella conferma dell'ordine: " + xhr.statusText);

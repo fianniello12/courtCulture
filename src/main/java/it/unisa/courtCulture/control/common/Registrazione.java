@@ -44,23 +44,20 @@ public class Registrazione extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		List<String> errors = new ArrayList<>();
 
-        String email = validateField(request.getParameter("email"), "email", errors);
-        String password = validateField(request.getParameter("psw"), "password", errors);
-        String nome = validateField(request.getParameter("nome"), "nome", errors);
-        String cognome = validateField(request.getParameter("cognome"), "cognome", errors);
+        String email = request.getParameter("email");
+        String password = request.getParameter("psw");
+        String nome = request.getParameter("nome");
+        String cognome = request.getParameter("cognome");
 
         String indirizzoSpedizione = request.getParameter("indirizzo_spedizione");
         String metodoPagamento = request.getParameter("metodo_pagamento");
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/registrazione.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/common/registrazione.jsp");
 
-        if (!errors.isEmpty()) {
-            request.setAttribute("errors", errors);
-            dispatcher.forward(request, response);
-            return;
-        }
+        
 
         try {
             UtenteBean utenteEsistente = utenteDao.doRetrieveByEmail(email);
@@ -91,13 +88,5 @@ public class Registrazione extends HttpServlet {
         }
     }
 	
-	
-	private String validateField(String value, String fieldName, List<String> errors) {
-        if (value == null || value.trim().isEmpty()) {
-            errors.add("Il campo " + fieldName + " non può essere vuoto");
-            return "";
-        }
-        return value.trim();
-	}
 
 }

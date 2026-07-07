@@ -32,10 +32,7 @@ public class EliminaProdotto extends HttpServlet {
 
     	HttpSession session = request.getSession(false);
 
-    	if (session == null 
-    	        || session.getAttribute("email") == null
-    	        || session.getAttribute("role") == null
-    	        || !session.getAttribute("role").equals("admin")) {
+    	if (session == null || session.getAttribute("email") == null || session.getAttribute("role") == null || !session.getAttribute("role").equals("admin")) {
 
     	    response.sendRedirect(request.getContextPath() + "/Login");
     	    return;

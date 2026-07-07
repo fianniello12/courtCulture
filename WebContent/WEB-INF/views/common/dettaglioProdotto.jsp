@@ -74,11 +74,14 @@
 		<p>Prezzo: €<%= prodotto.getPrezzo() %></p>
 		<p>Disponibilità: <%= prodotto.getQuantitaDisponibile() %></p>
 	
-		<form id="formCarrello">
+		<form id="formCarrello" onsubmit="event.preventDefault(); aggiungiAlCarrello();">
                 <input type="hidden" name="codice" id="codice" value="<%= prodotto.getCodice() %>">
                 
                 <label for="taglia">Taglia:</label>
-        			<select name="taglia" id="taglia" required>
+                	<select name="taglia" id="taglia" required>
+	            	<option value="">
+        				Seleziona una taglia
+    				</option>
 	            			<% for (int taglia = 35; taglia <= 48; taglia++) { %>
 	                			<option value="<%= taglia %>" ><%= taglia %></option>
 	           			 	<% } %>

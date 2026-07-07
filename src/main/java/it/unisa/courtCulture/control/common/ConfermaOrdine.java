@@ -14,6 +14,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.json.JSONObject;
+
 import it.unisa.courtCulture.dao.DettaglioOrdineDaoImpl;
 import it.unisa.courtCulture.dao.OrdineDaoImpl;
 import it.unisa.courtCulture.dao.ProdottoDaoImpl;
@@ -37,8 +39,7 @@ public class ConfermaOrdine extends HttpServlet {
     @Override
     public void init() throws ServletException {
 
-        DataSource ds =
-                (DataSource) getServletContext().getAttribute("DataSource");
+        DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 
 
         if (ds == null) {
@@ -47,11 +48,11 @@ public class ConfermaOrdine extends HttpServlet {
         }
 
 
-        ordineDao =new OrdineDaoImpl(ds);
+        ordineDao = new OrdineDaoImpl(ds);
 
-        dettaglioOrdineDao =new DettaglioOrdineDaoImpl(ds);
+        dettaglioOrdineDao = new DettaglioOrdineDaoImpl(ds);
 
-        prodottoDao =new ProdottoDaoImpl(ds);
+        prodottoDao = new ProdottoDaoImpl(ds);
     }
     
     public ConfermaOrdine() {
@@ -71,11 +72,10 @@ public class ConfermaOrdine extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-
-        
 
         HttpSession session =request.getSession(false);
 
@@ -151,9 +151,9 @@ public class ConfermaOrdine extends HttpServlet {
         }
 
 
-        indirizzoSpedizione =indirizzoSpedizione.trim();
+        indirizzoSpedizione = indirizzoSpedizione.trim();
 
-        metodoPagamento =metodoPagamento.trim();
+        metodoPagamento = metodoPagamento.trim();
 
 
         
@@ -200,7 +200,7 @@ public class ConfermaOrdine extends HttpServlet {
                     return;
                 }
 
-                totaleOrdine +=prodotto.getPrezzo() * item.getQuantita();
+                totaleOrdine += prodotto.getPrezzo() * item.getQuantita();
             }
 
 
@@ -275,8 +275,8 @@ public class ConfermaOrdine extends HttpServlet {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
 
-            response.getWriter().write("{\"success\": true}");
-
+            scriviJson(response,true,"Ordine completato con sucesso");
+            
         } catch (SQLException e) {
 
             e.printStackTrace();
@@ -292,18 +292,13 @@ public class ConfermaOrdine extends HttpServlet {
     
     private void scriviJson(HttpServletResponse response, boolean success, String message)throws IOException {
 
-    	response.getWriter().write("{" + "\"success\":" + success + "," + "\"message\":\"" + escapeJson(message) + "\"" + "}");
+    	JSONObject json = new JSONObject();
+
+        json.put("success", success);
+        json.put("message", message);
+
+        response.getWriter().write(json.toString());
 
     }
 
-
-    private String escapeJson(String value) {
-
-        if (value == null) {
-            return "";
-        }
-
-
-        return value.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "").replace("\r", "");
-    }
 }

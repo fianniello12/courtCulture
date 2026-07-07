@@ -12,18 +12,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import javax.sql.DataSource;
 
-import it.unisa.courtCulture.dao.OrdineDao;
 import it.unisa.courtCulture.dao.OrdineDaoImpl;
 import it.unisa.courtCulture.dao.ProdottoDaoImpl;
 import it.unisa.courtCulture.model.CarrelloItemBean;
 import it.unisa.courtCulture.model.OrdineBean;
 import it.unisa.courtCulture.model.ProdottoBean;
 
-/**
- * Servlet implementation class Carrello
- */
+
 @WebServlet("/Carrello")
 public class Carrello extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -63,6 +63,7 @@ public class Carrello extends HttpServlet {
         Integer idUtente =(Integer) request.getSession().getAttribute("idUtente");
         if(idUtente== null) {
         	request.getRequestDispatcher("/WEB-INF/views/common/carrello.jsp").forward(request, response);
+        	return;
         }
 
         try {
@@ -81,6 +82,7 @@ public class Carrello extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String azione = request.getParameter("azione");
 
         response.setContentType("application/json");
@@ -183,7 +185,7 @@ public class Carrello extends HttpServlet {
 
             session.setAttribute("carrello", carrello);
             
-            response.getWriter().write("{" + "\"success\":true,"+ "\"message\":\"Prodotto aggiunto al carrello\","+ "\"numeroProdotti\":" + carrello.size() + ","+ "\"totale\":" + calcolaTotale(carrello)+ "}");
+            scriviJson(response,true,"Prodotto aggiunto al carrello");
 
         } catch (NumberFormatException e) {
 
@@ -251,8 +253,8 @@ public class Carrello extends HttpServlet {
 	                session.setAttribute("carrello",carrello);
 
 
-	                response.getWriter().write("{" + "\"success\":true," + "\"message\":\"Quantità aggiornata\"," + "\"totale\":" + calcolaTotale(carrello) + "}");
-
+	                scriviJson(response,true,"Quantità aggiornata");
+	                
 	                return;
 	            }
 	        }
@@ -297,8 +299,7 @@ public class Carrello extends HttpServlet {
 
 	        if (rimosso) {
 
-	            response.getWriter().write("{" + "\"success\":true," + "\"message\":\"Prodotto rimosso dal carrello\","+ "\"totale\":" + calcolaTotale(carrello) + "}");
-
+	        	scriviJson(response,true,"Prodotto rimosso dal carrello");
 	        } else {
 
 	            scriviJson(response,false,"Prodotto non presente nel carrello");
@@ -318,71 +319,66 @@ public class Carrello extends HttpServlet {
 
 	    session.removeAttribute("carrello");
 
-	    response.getWriter().write("{" + "\"success\":true," + "\"message\":\"Carrello svuotato\","+ "\"totale\":0"+ "}");
-	}
+	    scriviJson(response,true,"Carrello svuotato");	
+	    }
 	
 
 	private void scriviJson(HttpServletResponse response, boolean success, String message) throws IOException {
 
-	    response.getWriter().write("{" + "\"success\":" + success + "," + "\"message\":\""+ escapeJson(message) + "\"" + "}");
+		JSONObject json = new JSONObject();
+
+	    json.put("success", success);
+	    json.put("message", message);
+
+	    response.getWriter().write(json.toString());	
+	    
 	}
 
 	private void inviaCarrelloJson( HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-	    HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 
-	    List<CarrelloItemBean> carrello = getCarrello(session);
+	    List<CarrelloItemBean> carrello =getCarrello(session);
+
+	    JSONObject risposta = new JSONObject();
+
+	    JSONArray items = new JSONArray();
+
+	    for (CarrelloItemBean item : carrello) {
+
+	        JSONObject itemJson = new JSONObject();
+
+	        itemJson.put("codice",item.getCodiceProdotto());
+
+	        itemJson.put("nome",item.getNome());
+
+	        itemJson.put("brand",item.getBrand());
+
+	        itemJson.put("pathImmagine",item.getPathImmagine());
+
+	        itemJson.put("prezzo",item.getPrezzo());
+
+	        itemJson.put("taglia",item.getTaglia());
+
+	        itemJson.put("quantita",item.getQuantita());
+
+	        itemJson.put("subtotale",item.getSubtotale());
+
+	        items.put(itemJson);
+	    }
+
+	    risposta.put("success", true);
+	    risposta.put("items", items);
+	    risposta.put("totale",calcolaTotale(carrello));
 
 	    response.setContentType("application/json");
 	    response.setCharacterEncoding("UTF-8");
 
-	    StringBuilder json = new StringBuilder();
-
-	    json.append("{");
-	    json.append("\"success\":true,");
-	    json.append("\"items\":[");
-
-	    for (int i = 0; i < carrello.size(); i++) {
-
-	        CarrelloItemBean item = carrello.get(i);
-
-	        json.append("{");
-
-	        json.append("\"codice\":").append(item.getCodiceProdotto()).append(",");
-
-	        json.append("\"nome\":\"").append(escapeJson(item.getNome())).append("\",");
-
-	        json.append("\"brand\":\"").append(escapeJson(item.getBrand())).append("\",");
-
-	        json.append("\"pathImmagine\":\"").append(escapeJson(item.getPathImmagine())).append("\",");
-
-	        json.append("\"prezzo\":").append(item.getPrezzo()).append(",");
-
-	        json.append("\"taglia\":").append(item.getTaglia()).append(",");
-
-	        json.append("\"quantita\":").append(item.getQuantita()).append(",");
-
-	        json.append("\"subtotale\":").append(item.getSubtotale());
-
-	        json.append("}");
-
-	        if (i < carrello.size() - 1) {
-	            json.append(",");
-	        }
-	    }
-
-	    json.append("],");
-
-	    json.append("\"totale\":").append(calcolaTotale(carrello));
-
-	    json.append("}");
-
-	    response.getWriter().write(json.toString());
+	    response.getWriter().write(risposta.toString());
 	}
 	
 	@SuppressWarnings("unchecked")
-	private List<CarrelloItemBean> getCarrello(
-	        HttpSession session) {
+	private List<CarrelloItemBean> getCarrello( HttpSession session) {
 
 	    List<CarrelloItemBean> carrello =(List<CarrelloItemBean>)session.getAttribute("carrello");
 
@@ -408,13 +404,5 @@ public class Carrello extends HttpServlet {
 	    return totale;
 	}
 	
-	private String escapeJson(String value) {
-
-	    if (value == null) {
-	        return "";
-	    }
-
-	    return value.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "").replace("\r", "");
-	}
 	
 }
